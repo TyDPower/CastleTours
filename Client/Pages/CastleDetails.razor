@@ -1,0 +1,27 @@
+﻿@page "/castle/{id:int}"
+@inject ICastleService CastleService
+
+<div class="media flex-container">
+    <div class="media-img-big-media-img-wrapper mr-2">
+        <img class="media-img-big" src="@castle.ImgUrl" alt="@castle.Name Image" />
+    </div>
+    <div class="media-body mx-3 my-1">
+        <h2 class="mb-1">@castle.Name</h2>
+        <h6 class="mb-1">@castle.Type</h6>
+        <h6 class="mb-1">@castle.Condition</h6>
+        <p>@castle.Description</p>
+        <h6 class="price">@castle.GetFormattedEnteranceFee()</h6>
+        <button class="btn btn-primary"><i class="oi oi-cart"></i>&nbsp;&nbsp;&nbsp;Add to Cart</button>
+    </div>
+</div>
+
+@code {
+    private Castle castle = new Castle();
+
+    [Parameter] public int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        castle = await CastleService.GetCastleById(Id);
+    }
+}

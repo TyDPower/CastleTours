@@ -1,0 +1,37 @@
+﻿@page "/"
+@page "/{categoryurl}"
+@inject ICategoryService CategoryService
+@inject ITourService TourService
+
+@if (Category != null)
+{
+    <h1>Welcome to the @Category.Name section.</h1>
+    <TourList />
+}
+else
+{
+    <h1>Welcome to Castle Tours</h1>
+    <TourList />
+}
+
+
+
+@code {
+    [Parameter] public string CategoryUrl { get; set; }
+
+    private Category Category = null;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await TourService.LoadTours(CategoryUrl);
+
+        if (CategoryUrl != null)
+        {
+            Category = CategoryService.Categories.FirstOrDefault(c => c.Url.ToLower().Equals(CategoryUrl.ToLower()));
+        }
+        else
+        {
+            Category = null;
+        }
+    }
+}

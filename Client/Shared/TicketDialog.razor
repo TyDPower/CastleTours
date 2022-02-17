@@ -1,0 +1,99 @@
+﻿@inject ILocalStorageService LocalStorage
+
+<div class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">@Tour.Name</h5>
+        <button type="button" class="btn-close" @onclick="OnCancel"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+            <h5>@Tour.Name</h5>
+            <h6><span class="oi oi-british-pound"></span> @Tour.GetTicketPriceFormatted()</h6>
+        </div>
+        <br/>
+        @if (Tour.Addons.Count() > 0)
+        {
+            <div>
+                <h5>Tour Extras</h5>
+                @foreach (var i in Tour.Addons)
+                {
+                    <input type="checkbox" id="@i.Id" @onclick="e => HandleAddonsCheckBox(i)">
+                    <label for="@i.Id"> @i.Name $@i.GetFormattedPrice()pp </label><br />
+                }
+            </div>
+            <br/>
+        }
+        <div>
+            <label>Ticket QTY</label> &nbsp;
+            <select id="ticketQty" @onchange="e => HandleTicketQtyUpdate(e)">
+                @for (var i=1; i<=ConfigureTicket.MaxTicketQty; i++)
+                {
+                    <option value="@i">@i</option>
+                }
+            </select>
+        </div>
+        <div>
+            <hr />
+            <h5>Ticket total: <span class="oi oi-british-pound"></span> @HandleTicketCost()</h5>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" @onclick="OnCancel"><i class="fas fa-times"></i></button>
+        <button type="button" class="btn btn-primary" @onclick="AddTicketToCart"><i class="fas fa-cart-arrow-down"></i> Add to cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+@code {
+    [Parameter] public EventCallback OnConfirm { get; set; }
+    [Parameter] public EventCallback OnClose { get; set; }
+    [Parameter] public Tour Tour { get; set; }
+
+    Ticket ConfigureTicket = new Ticket();
+
+    protected void HandleAddonsCheckBox(Addon addon)
+    {
+        var item = ConfigureTicket.SelectedTour.Addons.Find(i => i.Id == addon.Id);
+
+        if (item != null) ConfigureTicket.SelectedTour.Addons.Remove(item);
+        else ConfigureTicket.SelectedTour.Addons.Add(addon);
+    }
+
+    protected void HandleTicketQtyUpdate(ChangeEventArgs e)
+    {
+        ConfigureTicket.UpdateTicketQty(Convert.ToInt32(e.Value));
+    }
+
+    protected string HandleTicketCost()
+    {
+        decimal addonsTotal = 0.00m;
+        decimal tourCost = Tour.GetTicketPrice();
+        int ticketQty = ConfigureTicket.Qty;
+        decimal ticketCost = 0.00m;        
+
+        foreach (var i in ConfigureTicket.SelectedTour.Addons)
+        {
+            addonsTotal += i.Price;
+        }
+
+        ticketCost = (tourCost + addonsTotal) * ticketQty;
+        ConfigureTicket.UpdateTicketCost(ticketCost);
+
+        return ticketCost.ToString("0.00");
+    }
+
+    protected async Task AddTicketToCart()
+    {
+        var cart = await LocalStorage.GetItemAsync<List<Ticket>>("cart");
+        if (cart == null)
+        {
+            cart = new List<Ticket>();
+        }
+        cart.Add(ConfigureTicket);
+        OnClose.InvokeAsync();
+        await LocalStorage.SetItemAsync("cart", cart);
+    }
+}

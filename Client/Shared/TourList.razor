@@ -1,0 +1,38 @@
+﻿@inject ITourService TourService
+@implements IDisposable
+
+<ul class="list-unstyled">
+   @foreach (var tour in TourService.Tours)
+   {
+        <li class="media my-3 flex-container">
+            <div class="media-img-wrapper mr-2">
+                <a href="/tour/@tour.Id">
+                    <img class="media-img" src="@tour.ImgUrl" alt="@tour.Name Image" />
+                </a>
+            </div>
+            <div class="media-body mx-3">
+                <a href="/tour/@tour.Id">
+                    <h4 class="mb-0">@tour.Name</h4>
+                </a>
+                <h6 class="mb-0">@tour.IsOperating</h6>
+                <h6 class="mb-0">$@tour.Price.ToString("0.00") per person</h6>
+                <p>@tour.Description</p>
+            </div>
+        </li>
+   }
+</ul>
+
+@code {
+    //[Parameter] public int? CategoryId { get; set; } = null;
+
+    protected override void OnInitialized()
+    {
+        //await TourService.LoadTours();
+        TourService.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        TourService.OnChange -= StateHasChanged;
+    }
+}

@@ -1,0 +1,66 @@
+﻿@page "/tour/{id:int}"
+@inject ITourService TourService
+@inject DialogState DialogState
+
+<div class="media flex-container">
+    <div class="media-img-big-media-img-wrapper mr-2">
+        <img class="media-img-big" src="@tour.ImgUrl" alt="@tour.Name Image" />
+    </div>
+    <div class="media-body mx-3 my-1">
+        <h2 class="mb-1">@tour.Name</h2>
+        <ul>
+           @foreach (var i in tour.Facilities)
+           {
+               <li>
+                   <span class="oi oi-@i.Icon"></span>
+               </li>
+           }
+        </ul>
+        <h6 class="mb-1">@tour.IsOperating</h6>
+        <p>@tour.Description</p>
+        <ul>
+            @foreach (var i in tour.Addons)
+            {
+               <li>
+                   <span class="oi oi-puzzle-piece"></span> @i.Name <br/>
+                   <span class="oi oi-clipboard"></span> @i.Description <br/>
+                   <span class="oi oi-british-pound"></span> @i.Price.ToString("0.00")
+                   <br />
+               </li> 
+            }
+        </ul>
+        
+        <h6 class="price"><span class="oi oi-british-pound"></span> @tour.GetTicketPriceFormatted()</h6>
+        
+        @if (tour.IsOperating)
+        {
+            <button type="button" class="btn btn-primary" @onclick="DialogState.ShowDialog"><i class="oi oi-cart"></i>&nbsp;&nbsp;&nbsp;Buy Tickets</button>
+        }
+        else
+        {
+            <button type="button" class="btn btn-primary" disabled>Tour Currently Unavalible</button>
+        }
+
+        @if (DialogState.ShowingDialog)
+        {
+            <TicketDialog   OnConfirm="@DialogState.ShowDialog"
+                            OnClose="@DialogState.CloseDialog" 
+                            tour="@tour" />
+        }
+    </div>
+
+    
+
+</div>
+
+@code {
+    private Tour tour = new Tour();
+
+    [Parameter] public int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        tour = await TourService.GetTourById(Id);
+    }
+}
+
