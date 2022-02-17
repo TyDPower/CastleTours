@@ -1,23 +1,24 @@
 ﻿@inject ILocalStorageService LocalStorage
+@inject StoreConfig StoreConfig
 
 <div class="modal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">@Tour.Name</h5>
-        <button type="button" class="btn-close" @onclick="OnCancel"></button>
+        <h5 class="modal-title">@SelectedTour.Name</h5>
+        <button type="button" class="btn-close" @onclick="OnClose"></button>
       </div>
       <div class="modal-body">
         <div>
-            <h5>@Tour.Name</h5>
-            <h6><span class="oi oi-british-pound"></span> @Tour.GetTicketPriceFormatted()</h6>
+            <h5>@SelectedTour.Name</h5>
+            <h6><span class="oi oi-british-pound"></span> @SelectedTour.GetTicketPriceFormatted()</h6>
         </div>
         <br/>
-        @if (Tour.Addons.Count() > 0)
+        @if (SelectedTour.Addons.Count() > 0)
         {
             <div>
                 <h5>Tour Extras</h5>
-                @foreach (var i in Tour.Addons)
+                @foreach (var i in SelectedTour.Addons)
                 {
                     <input type="checkbox" id="@i.Id" @onclick="e => HandleAddonsCheckBox(i)">
                     <label for="@i.Id"> @i.Name $@i.GetFormattedPrice()pp </label><br />
@@ -28,7 +29,7 @@
         <div>
             <label>Ticket QTY</label> &nbsp;
             <select id="ticketQty" @onchange="e => HandleTicketQtyUpdate(e)">
-                @for (var i=1; i<=ConfigureTicket.MaxTicketQty; i++)
+                @for (var i=1; i<=StoreConfig.MaxTicketQty; i++)
                 {
                     <option value="@i">@i</option>
                 }
@@ -40,8 +41,12 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" @onclick="OnCancel"><i class="fas fa-times"></i></button>
-        <button type="button" class="btn btn-primary" @onclick="AddTicketToCart"><i class="fas fa-cart-arrow-down"></i> Add to cart</button>
+        <button type="button" class="btn btn-secondary" @onclick="OnClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <button type="button" class="btn btn-primary" @onclick="AddTicketToCart">
+            <i class="fas fa-cart-arrow-down"></i> Add to cart
+        </button>
       </div>
     </div>
   </div>
@@ -50,16 +55,25 @@
 @code {
     [Parameter] public EventCallback OnConfirm { get; set; }
     [Parameter] public EventCallback OnClose { get; set; }
-    [Parameter] public Tour Tour { get; set; }
+    [Parameter] public Tour SelectedTour { get; set; }
 
     Ticket ConfigureTicket = new Ticket();
+    List<Addon> SelectedAddons = new List<Addon>();
 
     protected void HandleAddonsCheckBox(Addon addon)
     {
-        var item = ConfigureTicket.SelectedTour.Addons.Find(i => i.Id == addon.Id);
+        var item = SelectedAddons.Find(i => i.Id == addon.Id);
 
-        if (item != null) ConfigureTicket.SelectedTour.Addons.Remove(item);
-        else ConfigureTicket.SelectedTour.Addons.Add(addon);
+        if (item != null) 
+        {
+            SelectedAddons.Remove(item);
+            ConfigureTicket.AddRemoveAddons(item.Name, false);
+        }
+        else 
+        {
+            SelectedAddons.Add(addon);
+            ConfigureTicket.AddRemoveAddons(addon.Name);
+        }
     }
 
     protected void HandleTicketQtyUpdate(ChangeEventArgs e)
@@ -70,11 +84,11 @@
     protected string HandleTicketCost()
     {
         decimal addonsTotal = 0.00m;
-        decimal tourCost = Tour.GetTicketPrice();
+        decimal tourCost = SelectedTour.GetTicketPrice();
         int ticketQty = ConfigureTicket.Qty;
         decimal ticketCost = 0.00m;        
 
-        foreach (var i in ConfigureTicket.SelectedTour.Addons)
+        foreach (var i in SelectedAddons)
         {
             addonsTotal += i.Price;
         }
@@ -87,6 +101,8 @@
 
     protected async Task AddTicketToCart()
     {
+        ConfigureTicket.SetSelectedTourName(SelectedTour.Name);
+        ConfigureTicket.SetCustomerName("Tyrone Power");
         var cart = await LocalStorage.GetItemAsync<List<Ticket>>("cart");
         if (cart == null)
         {

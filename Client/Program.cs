@@ -16,5 +16,6 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ITourService, TourService>();
 builder.Services.AddScoped<DialogState>();
 builder.Services.AddBlazoredLocalStorage();
+builder.Services.AddScoped<StoreConfig>();
 
 await builder.Build().RunAsync();
