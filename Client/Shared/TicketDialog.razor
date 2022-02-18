@@ -101,7 +101,7 @@
 
         //return ticketCost.ToString("0.00");
 
-        TicketOrderService.SetTicketOrderTotal(SelectedTour.Price, SelectedAddons);
+        TicketOrderService.SetTicketOrderTotal(SelectedTour.GetTicketPrice(), SelectedAddons);
         return TicketOrderService.GetTicketOrderTotalFormatted();
     }
 
