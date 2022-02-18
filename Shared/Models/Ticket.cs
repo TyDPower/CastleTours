@@ -14,7 +14,7 @@ namespace CastleTours.Shared.Models
         public int Qty { get; set; } = 1;
         [Column(TypeName = "decimal(18,2)")]
         public decimal TicketCost { get; set; }
-        public string SelectedTourName { get; set; }
+        public string TourName { get; set; }
         public string CustomerName { get; set; }
         public List<Addon> TourAddons { get; set; } = new List<Addon>();
         public string CastleName { get; set; }

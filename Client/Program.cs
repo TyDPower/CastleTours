@@ -4,6 +4,7 @@ using CastleTours.Client;
 using CastleTours.Client.Services.CartService;
 using CastleTours.Client.Services.CastleService;
 using CastleTours.Client.Services.CategoryService;
+using CastleTours.Client.Services.TicketOrderService;
 using CastleTours.Client.Services.TourService;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -17,6 +18,7 @@ builder.Services.AddScoped<ICastleService, CastleService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ITourService, TourService>();
 builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<ITicketOrderService, TicketOrderService>();
 
 builder.Services.AddSingleton<DialogState>();
 builder.Services.AddSingleton<StoreConfig>();

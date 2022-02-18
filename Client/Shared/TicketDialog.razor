@@ -1,6 +1,7 @@
 ﻿@inject ILocalStorageService LocalStorage
 @inject IToastService ToastService
 @inject ICartService CartService
+@inject ITicketOrderService TicketOrderService
 @inject StoreConfig StoreConfig
 
 <div class="modal" tabindex="-1">
@@ -107,20 +108,18 @@
         {
             Qty = numberTickets,
             TicketCost = ticketCost,
-            SelectedTourName = tourName,
+            TourName = tourName,
             CastleName = castleName,
             Location = location,
             TourAddons = SelectedAddons
         };
 
-        await CartService.AddToCart(TicketOrder);
+        TicketOrderService.CreateTicketOrder(numberTickets, ticketCost, tourName, castleName,
+            location, SelectedAddons);
 
-        //var cart = await LocalStorage.GetItemAsync<List<Ticket>>("cart");
-        //if (cart == null) cart = new List<Ticket>();
+        await CartService.AddToCart(TicketOrderService.GetTicketOrder());
+        await TicketOrderService.ClearTicketOrder();
 
-        //cart.Add(TicketOrder);
-        //await LocalStorage.SetItemAsync("cart", cart);
-        //ToastService.ShowSuccess(TicketOrder.SelectedTourName, "Added to cart: ");
         OnClose.InvokeAsync();
     }
 }
