@@ -1,4 +1,5 @@
 using Blazored.LocalStorage;
+using Blazored.Toast;
 using CastleTours.Client;
 using CastleTours.Client.Services.CastleService;
 using CastleTours.Client.Services.CategoryService;
@@ -19,5 +20,7 @@ builder.Services.AddSingleton<DialogState>();
 builder.Services.AddSingleton<StoreConfig>();
 
 builder.Services.AddBlazoredLocalStorage();
+builder.Services.AddBlazoredToast();
+
 
 await builder.Build().RunAsync();
