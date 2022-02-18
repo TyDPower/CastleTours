@@ -1,5 +1,6 @@
 ﻿@page "/tour/{id:int}"
 @inject ITourService TourService
+@inject ITicketOrderService TicketOrderService
 @inject DialogState DialogState
 
 <div class="media flex-container">
@@ -34,17 +35,16 @@
         
         @if (tour.IsOperating)
         {
-            <button type="button" class="btn btn-primary" @onclick="DialogState.ShowDialog"><i class="oi oi-cart"></i>&nbsp;&nbsp;&nbsp;Buy Tickets</button>
+            <button type="button" class="btn btn-primary" @onclick="TicketOrderService.ShowTicketDialog"><i class="oi oi-cart"></i>&nbsp;&nbsp;&nbsp;Buy Tickets</button>
         }
         else
         {
             <button type="button" class="btn btn-primary" disabled>Tour Currently Unavalible</button>
         }
 
-        @if (DialogState.ShowingDialog)
+        @if (TicketOrderService.GetTicketDialogStatus())
         {
-            <TicketDialog   OnConfirm="@DialogState.ShowDialog"
-                            OnClose="@DialogState.CloseDialog" 
+            <TicketDialog   OnClose="@TicketOrderService.CloseTicketDialog" 
                             SelectedTour="@tour" />
         }
     </div>

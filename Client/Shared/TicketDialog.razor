@@ -56,7 +56,6 @@
 </div>
 
 @code {
-    [Parameter] public EventCallback OnConfirm { get; set; }
     [Parameter] public EventCallback OnClose { get; set; }
     [Parameter] public Tour SelectedTour { get; set; }
 
@@ -86,35 +85,30 @@
 
     protected void HandleTicketQtyUpdate(ChangeEventArgs e)
     {
-        numberTickets = Convert.ToInt32(e.Value);
+        int ticketQty = Convert.ToInt32(e.Value);
+        TicketOrderService.SetTicketQty(ticketQty);
     }
 
     protected string HandleTicketCost()
     {
-        decimal addonsTotal = 0.00m;
-        decimal tourCost = SelectedTour.GetTicketPrice();
-        int ticketQty = numberTickets;
+        //decimal addonsTotal = 0.00m;
+        //decimal tourCost = SelectedTour.GetTicketPrice();
+        //int ticketQty = numberTickets;
 
-        foreach (var i in SelectedAddons) addonsTotal += i.Price;
+        //foreach (var i in SelectedAddons) addonsTotal += i.Price;
 
-        ticketCost = (tourCost + addonsTotal) * ticketQty;
+        //ticketCost = (tourCost + addonsTotal) * ticketQty;
 
-        return ticketCost.ToString("0.00");
+        //return ticketCost.ToString("0.00");
+
+        TicketOrderService.SetTicketOrderTotal(SelectedTour.Price, SelectedAddons);
+        return TicketOrderService.GetTicketOrderTotalFormatted();
     }
 
     protected async Task AddTicketToCart()
     {
-        Ticket TicketOrder = new Ticket()
-        {
-            Qty = numberTickets,
-            TicketCost = ticketCost,
-            TourName = tourName,
-            CastleName = castleName,
-            Location = location,
-            TourAddons = SelectedAddons
-        };
 
-        TicketOrderService.CreateTicketOrder(numberTickets, ticketCost, tourName, castleName,
+        TicketOrderService.CreateTicketOrder(/*numberTickets, */ticketCost, tourName, castleName,
             location, SelectedAddons);
 
         await CartService.AddToCart(TicketOrderService.GetTicketOrder());
