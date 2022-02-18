@@ -1,6 +1,7 @@
 ﻿@inject ILocalStorageService LocalStorage
-@inject StoreConfig StoreConfig
 @inject IToastService ToastService
+@inject ICartService CartService
+@inject StoreConfig StoreConfig
 
 <div class="modal" tabindex="-1">
   <div class="modal-dialog">
@@ -112,12 +113,14 @@
             TourAddons = SelectedAddons
         };
 
-        var cart = await LocalStorage.GetItemAsync<List<Ticket>>("cart");
-        if (cart == null) cart = new List<Ticket>();
+        await CartService.AddToCart(TicketOrder);
 
-        cart.Add(TicketOrder);
-        await LocalStorage.SetItemAsync("cart", cart);
-        ToastService.ShowSuccess(TicketOrder.SelectedTourName, "Added to cart: ");
+        //var cart = await LocalStorage.GetItemAsync<List<Ticket>>("cart");
+        //if (cart == null) cart = new List<Ticket>();
+
+        //cart.Add(TicketOrder);
+        //await LocalStorage.SetItemAsync("cart", cart);
+        //ToastService.ShowSuccess(TicketOrder.SelectedTourName, "Added to cart: ");
         OnClose.InvokeAsync();
     }
 }

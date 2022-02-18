@@ -1,6 +1,7 @@
 using Blazored.LocalStorage;
 using Blazored.Toast;
 using CastleTours.Client;
+using CastleTours.Client.Services.CartService;
 using CastleTours.Client.Services.CastleService;
 using CastleTours.Client.Services.CategoryService;
 using CastleTours.Client.Services.TourService;
@@ -15,6 +16,7 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 builder.Services.AddScoped<ICastleService, CastleService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ITourService, TourService>();
+builder.Services.AddScoped<ICartService, CartService>();
 
 builder.Services.AddSingleton<DialogState>();
 builder.Services.AddSingleton<StoreConfig>();
