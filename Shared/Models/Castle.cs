@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace CastleTours.Shared.Models
@@ -31,10 +32,11 @@ namespace CastleTours.Shared.Models
         public Category Category { get; set; }
         public int LocationId { get; set; }
         public Location Location { get; set; }
+        [JsonIgnore]
         public List<Tour>? Tours { get; set; }
         public List<CastleComment>? CastleComments { get; set; }
         public List<Facility>? Facilities { get; set; }
-        public List<Amenity>? Amenities { get; set; } 
+        public List<Amenity>? Amenities { get; set; }
         public List<OperatingTime> OperatingTimes { get; set; }
         public string GetFormattedEnteranceFee()
         {

@@ -19,5 +19,11 @@ namespace CastleTours.Shared.Models
         public string? GoogleMapsUrl { get; set; }
         public string? OpenStreetMapUrl { get; set; }
 
+        public string GetFormattedLocation()
+        {
+            string location = Street + ", " + Area + ", " + Region + ", " + Country + ", " + Postcode;
+            return location;
+        }
+
     }
 }

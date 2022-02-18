@@ -14,8 +14,10 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 builder.Services.AddScoped<ICastleService, CastleService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ITourService, TourService>();
-builder.Services.AddScoped<DialogState>();
+
+builder.Services.AddSingleton<DialogState>();
+builder.Services.AddSingleton<StoreConfig>();
+
 builder.Services.AddBlazoredLocalStorage();
-builder.Services.AddScoped<StoreConfig>();
 
 await builder.Build().RunAsync();

@@ -57,59 +57,65 @@
     [Parameter] public EventCallback OnClose { get; set; }
     [Parameter] public Tour SelectedTour { get; set; }
 
-    Ticket ConfigureTicket = new Ticket();
     List<Addon> SelectedAddons = new List<Addon>();
+    string customerName;
+    string castleName;
+    string tourName;
+    string location;
+    decimal ticketCost = 0.00m;
+    int numberTickets = 1;
+
+    protected override void OnInitialized()
+    {
+        customerName = null;
+        castleName = SelectedTour.Castle.Name;
+        tourName = SelectedTour.Name;
+        location = SelectedTour.Castle.Location.GetFormattedLocation();
+    }
 
     protected void HandleAddonsCheckBox(Addon addon)
     {
         var item = SelectedAddons.Find(i => i.Id == addon.Id);
 
-        if (item != null) 
-        {
-            SelectedAddons.Remove(item);
-            ConfigureTicket.AddRemoveAddons(item.Name, false);
-        }
-        else 
-        {
-            SelectedAddons.Add(addon);
-            ConfigureTicket.AddRemoveAddons(addon.Name);
-        }
+        if (item != null) SelectedAddons.Remove(item);
+        else SelectedAddons.Add(addon);
     }
 
     protected void HandleTicketQtyUpdate(ChangeEventArgs e)
     {
-        ConfigureTicket.UpdateTicketQty(Convert.ToInt32(e.Value));
+        numberTickets = Convert.ToInt32(e.Value);
     }
 
     protected string HandleTicketCost()
     {
         decimal addonsTotal = 0.00m;
         decimal tourCost = SelectedTour.GetTicketPrice();
-        int ticketQty = ConfigureTicket.Qty;
-        decimal ticketCost = 0.00m;        
+        int ticketQty = numberTickets;
 
-        foreach (var i in SelectedAddons)
-        {
-            addonsTotal += i.Price;
-        }
+        foreach (var i in SelectedAddons) addonsTotal += i.Price;
 
         ticketCost = (tourCost + addonsTotal) * ticketQty;
-        ConfigureTicket.UpdateTicketCost(ticketCost);
 
         return ticketCost.ToString("0.00");
     }
 
     protected async Task AddTicketToCart()
     {
-        ConfigureTicket.SetSelectedTourName(SelectedTour.Name);
-        ConfigureTicket.SetCustomerName("Tyrone Power");
-        var cart = await LocalStorage.GetItemAsync<List<Ticket>>("cart");
-        if (cart == null)
+        Ticket TicketOrder = new Ticket()
         {
-            cart = new List<Ticket>();
-        }
-        cart.Add(ConfigureTicket);
-        OnClose.InvokeAsync();
+            Qty = numberTickets,
+            TicketCost = ticketCost,
+            SelectedTourName = tourName,
+            CastleName = castleName,
+            Location = location,
+            TourAddons = SelectedAddons
+        };
+
+        var cart = await LocalStorage.GetItemAsync<List<Ticket>>("cart");
+        if (cart == null) cart = new List<Ticket>();
+
+        cart.Add(TicketOrder);
         await LocalStorage.SetItemAsync("cart", cart);
+        OnClose.InvokeAsync();
     }
 }
