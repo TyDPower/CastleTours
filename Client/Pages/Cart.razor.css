@@ -1,0 +1,26 @@
+﻿.item-container {
+    display: flex;
+    padding: 6px;
+}
+
+.item-image-wrapper {
+    width: 150px;
+    text-align: center;
+    border-radius: 6px;
+}
+
+.item-image {
+    max-width: 150px;
+    max-height: 150px;
+    padding: 6px;
+}
+
+.item-name {
+    flex-grow: 1;
+    padding: 6px;
+}
+
+.item-price {
+    font-weight: 600;
+    text-align: right;
+}
