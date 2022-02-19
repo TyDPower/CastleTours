@@ -15,10 +15,7 @@ namespace CastleTours.Client.Services.TicketOrderService
             return TicketDialog;
         }
 
-        public void ShowTicketDialog()
-        {
-            TicketDialog = true;
-        }
+        public void ShowTicketDialog() => TicketDialog = true;
 
         public void CloseTicketDialog()
         {
@@ -31,40 +28,19 @@ namespace CastleTours.Client.Services.TicketOrderService
             return TicketOrder;
         }
 
-        public void SetCustomerName(string customerName = "Guest") //Set in the store config service
-        {
-            TicketOrder.CustomerName = customerName;
-        }
+        public void SetCustomerName(string customerName = "Guest") => TicketOrder.CustomerName = customerName;
 
-        public void SetTourName(string tourName)
-        {
-            TicketOrder.TourName = tourName;
-        }
+        public void SetTourName(string tourName) => TicketOrder.TourName = tourName;
 
-        public void SetCastleName(string castleName)
-        {
-            TicketOrder.CastleName = castleName;
-        }
+        public void SetCastleName(string castleName) => TicketOrder.CastleName = castleName;
 
-        public void SetTicketQty(int ticketQty)
-        {
-            TicketOrder.Qty = ticketQty;
-        }
+        public void SetTicketQty(int ticketQty) => TicketOrder.Qty = ticketQty;
 
-        public void SetTourLocation(string location)
-        {
-            TicketOrder.Location = location;
-        }
+        public void SetTourLocation(string location) => TicketOrder.Location = location;
 
-        public void SetTourId(int tourId)
-        {
-            TicketOrder.TourId = tourId;
-        }
+        public void SetTourId(int tourId) => TicketOrder.TourId = tourId;
 
-        public void SetCastleId(int castleId)
-        {
-            TicketOrder.CastleId = castleId;
-        }
+        public void SetCastleId(int castleId) => TicketOrder.CastleId = castleId;
 
         public string SetAndReturnTicketOrderTotal(decimal selectedTourCost)
         {
@@ -87,10 +63,7 @@ namespace CastleTours.Client.Services.TicketOrderService
             else TicketOrder.TourAddons.Add(addon);
         }
 
-        public async Task ClearTicketOrder()
-        {
-            TicketOrder = new Ticket();
-        }
+        public async Task ClearTicketOrder() => TicketOrder = new Ticket();
 
     }
 }
