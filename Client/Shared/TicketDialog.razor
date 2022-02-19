@@ -63,14 +63,9 @@
 
     protected override void OnInitialized()
     {
-        string location = SelectedTour.Castle.Location.GetFormattedLocation();
-
-        TicketOrderService.SetCustomerName();
-        TicketOrderService.SetCastleName(SelectedTour.Castle.Name);
         TicketOrderService.SetCastleId(SelectedTour.CastleId);
         TicketOrderService.SetTourId(SelectedTour.Id);
-        TicketOrderService.SetTourName(SelectedTour.Name);
-        TicketOrderService.SetTourLocation(location);
+        TicketOrderService.SetTicketTitle(SelectedTour.Name);
     }
 
     protected async Task AddTicketToCart()

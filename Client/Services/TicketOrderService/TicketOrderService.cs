@@ -28,21 +28,15 @@ namespace CastleTours.Client.Services.TicketOrderService
             return TicketOrder;
         }
 
-        public void SetCustomerName(string customerName = "Guest") => TicketOrder.CustomerName = customerName;
-
-        public void SetTourName(string tourName) => TicketOrder.TourName = tourName;
-
-        public void SetCastleName(string castleName) => TicketOrder.CastleName = castleName;
-
         public void SetTicketQty(int ticketQty) => TicketOrder.Qty = ticketQty;
 
-        public void SetTourLocation(string location) => TicketOrder.Location = location;
 
         public void SetTourId(int tourId) => TicketOrder.TourId = tourId;
 
         public void SetCastleId(int castleId) => TicketOrder.CastleId = castleId;
 
         public void SetCustomerId(int customerId) => TicketOrder.CustomerId = customerId;
+        public void SetTicketTitle(string ticketTitle) => TicketOrder.Title = ticketTitle;
 
         public string SetAndReturnTicketOrderTotal(decimal selectedTourCost)
         {
@@ -53,8 +47,7 @@ namespace CastleTours.Client.Services.TicketOrderService
             foreach (var i in TicketOrder.TourAddons) addonsTotal += i.Price;
             decimal ticketCost = (tourCost + addonsTotal) * ticketQty;
 
-            TicketOrder.TicketCost = ticketCost;
-            return TicketOrder.TicketCost.ToString("0.00");
+            return ticketCost.ToString("0.00");
         }
 
         public void AddTourAddonsToTicket(Addon addon)

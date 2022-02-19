@@ -27,7 +27,7 @@ namespace CastleTours.Client.Services.CartService
             cart.Add(ticket);
             await LocalStorage.SetItemAsync("cart", cart);
 
-            ToastService.ShowSuccess(ticket.TourName, "Added to cart:");
+            ToastService.ShowSuccess(ticket.Title, "Added to cart:");
 
             OnChange.Invoke();
         }
