@@ -15,6 +15,7 @@ namespace CastleTours.Client.Services.TicketOrderService
         void SetTourLocation(string location);
         void SetTourId(int tourId);
         void SetCastleId(int castleId);
+        void SetCustomerId(int customerId);
         string SetAndReturnTicketOrderTotal(decimal selectedTourCost);
         void AddTourAddonsToTicket(Addon addon);
         Task ClearTicketOrder();

@@ -42,6 +42,8 @@ namespace CastleTours.Client.Services.TicketOrderService
 
         public void SetCastleId(int castleId) => TicketOrder.CastleId = castleId;
 
+        public void SetCustomerId(int customerId) => TicketOrder.CustomerId = customerId;
+
         public string SetAndReturnTicketOrderTotal(decimal selectedTourCost)
         {
             decimal addonsTotal = 0.00m;
