@@ -56,7 +56,6 @@ else
 
     private async Task DeleteItem(CartItem item)
     {
-        Console.WriteLine(item.TicketCreatedDate);
         await CartService.DeleteItem(item);
         CartItems = await CartService.GetCartItems();
     }
