@@ -10,6 +10,8 @@ namespace CastleTours.Shared.Models
     public class Ticket
     {
         public string Id { get; private set; } = Guid.NewGuid().ToString();
+        public int CastleId { get; set; }
+        public int TourId { get; set; }
         public DateTime CreatedDate { get; private set; } = DateTime.Now;
         public int Qty { get; set; } = 1;
         [Column(TypeName = "decimal(18,2)")]

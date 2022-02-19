@@ -56,6 +56,16 @@ namespace CastleTours.Client.Services.TicketOrderService
             TicketOrder.Location = location;
         }
 
+        public void SetTourId(int tourId)
+        {
+            TicketOrder.TourId = tourId;
+        }
+
+        public void SetCastleId(int castleId)
+        {
+            TicketOrder.CastleId = castleId;
+        }
+
         public string SetAndReturnTicketOrderTotal(decimal selectedTourCost)
         {
             decimal addonsTotal = 0.00m;

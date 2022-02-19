@@ -67,6 +67,8 @@
 
         TicketOrderService.SetCustomerName();
         TicketOrderService.SetCastleName(SelectedTour.Castle.Name);
+        TicketOrderService.SetCastleId(SelectedTour.CastleId);
+        TicketOrderService.SetTourId(SelectedTour.Id);
         TicketOrderService.SetTourName(SelectedTour.Name);
         TicketOrderService.SetTourLocation(location);
     }
