@@ -2,7 +2,7 @@
 @inject IToastService ToastService
 @inject ICartService CartService
 @inject ITicketOrderService TicketOrderService
-@inject StoreConfig StoreConfig
+@inject IStoreConfigService StoreConfigService
 
 <div class="modal" tabindex="-1">
   <div class="modal-dialog">
@@ -32,7 +32,7 @@
         <div>
             <label>Ticket QTY</label> &nbsp;
             <select id="ticketQty" @onchange="e => TicketOrderService.SetTicketQty(Convert.ToInt32(e.Value))">
-                @for (var i=1; i<=StoreConfig.MaxTicketQty; i++)
+                @for (var i=1; i<=StoreConfigService.GetMaxticketQty(); i++)
                 {
                     <option value="@i">@i</option>
                 }

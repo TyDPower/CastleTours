@@ -1,4 +1,5 @@
-﻿using CastleTours.Shared.Models;
+﻿using CastleTours.Client.Services.StoreConfigService;
+using CastleTours.Shared.Models;
 
 namespace CastleTours.Client.Services.TicketOrderService
 {
