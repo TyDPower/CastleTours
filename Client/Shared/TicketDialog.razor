@@ -63,6 +63,8 @@
 
     protected override void OnInitialized()
     {
+        string ticketId = Guid.NewGuid().ToString();
+        TicketOrderService.SetTicketId(ticketId);
         TicketOrderService.SetCastleId(SelectedTour.CastleId);
         TicketOrderService.SetTourId(SelectedTour.Id);
         TicketOrderService.SetTicketTitle(SelectedTour.Name);
@@ -70,6 +72,8 @@
 
     protected async Task AddTicketToCart()
     {
+        DateTime ticketCreatedDate = new DateTime();
+        TicketOrderService.SetTicketCreatedDate(ticketCreatedDate);
         await CartService.AddToCart(TicketOrderService.GetTicketOrder());
         await TicketOrderService.ClearTicketOrder();
 

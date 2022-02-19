@@ -29,6 +29,9 @@ else
                            }
                        </h6>
                     }
+                    <button class="btn-delete" @onclick="@(()=> DeleteItem(i))">
+                        Delete
+                    </button>
                     
                    <div class="item-price">
                        @i.GetTicketOrderTotal().ToString("$0.00")
@@ -48,6 +51,13 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        CartItems = await CartService.GetCartItems();
+    }
+
+    private async Task DeleteItem(CartItem item)
+    {
+        Console.WriteLine(item.TicketCreatedDate);
+        await CartService.DeleteItem(item);
         CartItems = await CartService.GetCartItems();
     }
 }

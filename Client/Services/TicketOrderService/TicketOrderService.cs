@@ -60,5 +60,14 @@ namespace CastleTours.Client.Services.TicketOrderService
 
         public async Task ClearTicketOrder() => TicketOrder = new Ticket();
 
+        void ITicketOrderService.SetTicketId(string ticketId)
+        {
+            TicketOrder.Id = ticketId;
+        }
+
+        void ITicketOrderService.SetTicketCreatedDate(DateTime dateTime)
+        {
+            TicketOrder.CreatedDate = dateTime;
+        }
     }
 }

@@ -60,5 +60,20 @@ namespace CastleTours.Client.Services.CartService
 
             return result;
         }
+
+        public async Task DeleteItem(CartItem item)
+        {
+            var cart = await LocalStorage.GetItemAsync<List<Ticket>>("cart");
+            if (cart == null)
+            {
+                return;
+            }
+
+            var cartItem = cart.Find(t => t.Id == item.TicketId);
+            cart.Remove(cartItem);
+
+            await LocalStorage.SetItemAsync("cart", cart);
+            OnChange.Invoke();
+        }
     }
 }
