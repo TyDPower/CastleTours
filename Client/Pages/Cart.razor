@@ -7,6 +7,40 @@
 {
     <span>You have no items in your cart.</span>
 }
+else
+{
+    <div>
+       @foreach (var i in CartItems)
+       {
+
+           <div class="item-container">
+               <div class="item-image-wrapper">
+                   <img src="@i.SelectedTour.ImgUrl" class="item-image"/>
+               </div>
+               <div class="item-name">
+                   <h5><a href="/tour/@i.SelectedTour.Id">@i.SelectedTour.Name</a></h5>
+                   <h6>Ticket Quantity: @i.TicketQty</h6>
+                   @if (i.SelectedAddons.Count() > 0)
+                    {
+                        <h6>Selected Addons: 
+                           @foreach (var a in i.SelectedAddons)
+                           {
+                               <span>@a.Name &nbsp;&nbsp;</span>
+                           }
+                       </h6>
+                    }
+                    
+                   <div class="item-price">
+                       @i.GetTicketOrderTotal().ToString("$0.00")
+                   </div>
+               </div>
+           </div>    
+       }
+       <div class="item-price">
+           Total (@CartItems.Count items): $@CartItems.Sum(i => i.GetTicketOrderTotal()) 
+       </div>
+    </div>
+}
 
 
 @code {
