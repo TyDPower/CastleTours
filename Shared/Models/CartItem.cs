@@ -13,5 +13,16 @@ namespace CastleTours.Shared.Models
         public int TicketQty { get; set; }
         public Tour SelectedTour { get; set; }
         public List<Addon> SelectedAddons { get; set; } = new List<Addon>();
+        public decimal GetTicketOrderTotal()
+        {
+            decimal addonsTotal = 0.00m;
+            decimal tourCost = SelectedTour.GetTicketPrice();
+            int ticketQty = TicketQty;
+
+            foreach (var i in SelectedAddons) addonsTotal += i.Price;
+            decimal ticketCost = (tourCost + addonsTotal) * ticketQty;
+
+            return ticketCost;
+        }
     }
 }
