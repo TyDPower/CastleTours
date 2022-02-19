@@ -59,28 +59,19 @@
     [Parameter] public EventCallback OnClose { get; set; }
     [Parameter] public Tour SelectedTour { get; set; }
 
-    protected List<Addon> SelectedAddons = new List<Addon>();
-    protected string customerName;
-    protected string castleName;
-    protected string tourName;
-    protected string location;
-    protected decimal ticketCost = 0.00m;
-    protected int numberTickets = 1;
-
     protected override void OnInitialized()
     {
-        customerName = null;
-        castleName = SelectedTour.Castle.Name;
-        tourName = SelectedTour.Name;
-        location = SelectedTour.Castle.Location.GetFormattedLocation();
+        string location = SelectedTour.Castle.Location.GetFormattedLocation();
+
+        TicketOrderService.SetCustomerName();
+        TicketOrderService.SetCastleName(SelectedTour.Castle.Name);
+        TicketOrderService.SetTourName(SelectedTour.Name);
+        TicketOrderService.SetTourLocation(location);
     }
 
     protected void HandleAddonsCheckBox(Addon addon)
     {
-        var item = SelectedAddons.Find(i => i.Id == addon.Id);
-
-        if (item != null) SelectedAddons.Remove(item);
-        else SelectedAddons.Add(addon);
+        TicketOrderService.AddTourAddonsToTicket(addon);
     }
 
     protected void HandleTicketQtyUpdate(ChangeEventArgs e)
@@ -91,26 +82,12 @@
 
     protected string HandleTicketCost()
     {
-        //decimal addonsTotal = 0.00m;
-        //decimal tourCost = SelectedTour.GetTicketPrice();
-        //int ticketQty = numberTickets;
-
-        //foreach (var i in SelectedAddons) addonsTotal += i.Price;
-
-        //ticketCost = (tourCost + addonsTotal) * ticketQty;
-
-        //return ticketCost.ToString("0.00");
-
-        TicketOrderService.SetTicketOrderTotal(SelectedTour.GetTicketPrice(), SelectedAddons);
+        TicketOrderService.SetTicketOrderTotal(SelectedTour.GetTicketPrice());
         return TicketOrderService.GetTicketOrderTotalFormatted();
     }
 
     protected async Task AddTicketToCart()
     {
-
-        TicketOrderService.CreateTicketOrder(/*numberTickets, */ticketCost, tourName, castleName,
-            location, SelectedAddons);
-
         await CartService.AddToCart(TicketOrderService.GetTicketOrder());
         await TicketOrderService.ClearTicketOrder();
 

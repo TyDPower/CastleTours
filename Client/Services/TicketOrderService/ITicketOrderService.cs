@@ -7,12 +7,15 @@ namespace CastleTours.Client.Services.TicketOrderService
         bool GetTicketDialogStatus();
         void ShowTicketDialog();
         void CloseTicketDialog();
-        void CreateTicketOrder(/*int qty,*/ decimal ticketCost, string tourName,
-            string castleName, string location, List<Addon> tourAddons);
         Ticket GetTicketOrder();
         string GetTicketOrderTotalFormatted();
+        void SetCustomerName(string customerName = "Guest");
+        void SetTourName(string tourName);
         void SetTicketQty(int ticketQty);
-        void SetTicketOrderTotal(decimal selectedTourCost, List<Addon> selectedAddons);
+        void SetCastleName(string castleName);
+        void SetTourLocation(string location);
+        void SetTicketOrderTotal(decimal selectedTourCost);
+        void AddTourAddonsToTicket(Addon addon);
         Task ClearTicketOrder();
     }
 }
