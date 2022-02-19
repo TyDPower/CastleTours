@@ -69,7 +69,7 @@ namespace CastleTours.Client.Services.CartService
                 return;
             }
 
-            var cartItem = cart.Find(t => t.Id == item.TicketId);
+            var cartItem = cart.Find(t => t.Id == item.TicketId && t.CreatedDate == item.TicketCreatedDate);
             cart.Remove(cartItem);
 
             await LocalStorage.SetItemAsync("cart", cart);
