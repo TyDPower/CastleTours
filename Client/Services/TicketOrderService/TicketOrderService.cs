@@ -30,10 +30,10 @@ namespace CastleTours.Client.Services.TicketOrderService
             return TicketOrder;
         }
 
-        public string GetTicketOrderTotalFormatted()
+        /*public string GetTicketOrderTotalFormatted()
         {
             return TicketOrder.TicketCost.ToString("0.00");
-        }
+        }*/
 
         public void SetCustomerName(string customerName = "Guest") //Set in the store config service
         {
@@ -60,7 +60,7 @@ namespace CastleTours.Client.Services.TicketOrderService
             TicketOrder.Location = location;
         }
 
-        public void SetTicketOrderTotal(decimal selectedTourCost/*, List<Addon> selectedAddons*/)
+        public string SetAndReturnTicketOrderTotal(decimal selectedTourCost)
         {
             decimal addonsTotal = 0.00m;
             decimal tourCost = selectedTourCost;
@@ -70,6 +70,7 @@ namespace CastleTours.Client.Services.TicketOrderService
             decimal ticketCost = (tourCost + addonsTotal) * ticketQty;
 
             TicketOrder.TicketCost = ticketCost;
+            return TicketOrder.TicketCost.ToString("0.00");
         }
 
         public void AddTourAddonsToTicket(Addon addon)

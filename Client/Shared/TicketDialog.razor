@@ -23,7 +23,7 @@
                 <h5>Tour Extras</h5>
                 @foreach (var i in SelectedTour.Addons)
                 {
-                    <input type="checkbox" id="@i.Id" @onclick="e => HandleAddonsCheckBox(i)">
+                    <input type="checkbox" id="@i.Id" @onclick="e => TicketOrderService.AddTourAddonsToTicket(i)">
                     <label for="@i.Id"> @i.Name $@i.GetFormattedPrice()pp </label><br />
                 }
             </div>
@@ -31,7 +31,7 @@
         }
         <div>
             <label>Ticket QTY</label> &nbsp;
-            <select id="ticketQty" @onchange="e => HandleTicketQtyUpdate(e)">
+            <select id="ticketQty" @onchange="e => TicketOrderService.SetTicketQty(Convert.ToInt32(e.Value))">
                 @for (var i=1; i<=StoreConfig.MaxTicketQty; i++)
                 {
                     <option value="@i">@i</option>
@@ -40,7 +40,9 @@
         </div>
         <div>
             <hr />
-            <h5>Ticket total: <span class="oi oi-british-pound"></span> @HandleTicketCost()</h5>
+            <h5>Ticket total: <span class="oi oi-british-pound"></span>
+                @TicketOrderService.SetAndReturnTicketOrderTotal(SelectedTour.GetTicketPrice())
+            </h5>
         </div>
       </div>
       <div class="modal-footer">
@@ -69,22 +71,11 @@
         TicketOrderService.SetTourLocation(location);
     }
 
-    protected void HandleAddonsCheckBox(Addon addon)
+    /*protected string HandleTicketCost()
     {
-        TicketOrderService.AddTourAddonsToTicket(addon);
-    }
-
-    protected void HandleTicketQtyUpdate(ChangeEventArgs e)
-    {
-        int ticketQty = Convert.ToInt32(e.Value);
-        TicketOrderService.SetTicketQty(ticketQty);
-    }
-
-    protected string HandleTicketCost()
-    {
-        TicketOrderService.SetTicketOrderTotal(SelectedTour.GetTicketPrice());
+        TicketOrderService.SetAndReturnTicketOrderTotal(SelectedTour.GetTicketPrice());
         return TicketOrderService.GetTicketOrderTotalFormatted();
-    }
+    }*/
 
     protected async Task AddTicketToCart()
     {
