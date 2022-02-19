@@ -31,5 +31,34 @@ namespace CastleTours.Client.Services.CartService
 
             OnChange.Invoke();
         }
+
+        public async Task<List<CartItem>> GetCartItems()
+        {
+            var result = new List<CartItem>();
+            var cart = await LocalStorage.GetItemAsync<List<Ticket>>("cart");
+
+            if (cart == null)
+            {
+                return result;
+            }
+
+            foreach (var item in cart)
+            {
+                var tour = await TourService.GetTourById(item.TourId);
+
+                var cartItem = new CartItem
+                {
+                    TicketId = item.Id,
+                    TicketCreatedDate = item.CreatedDate,
+                    TicketQty = item.Qty,
+                    SelectedTour = tour,
+                    SelectedAddons = item.TourAddons
+                };
+
+                result.Add(cartItem);
+            }
+
+            return result;
+        }
     }
 }

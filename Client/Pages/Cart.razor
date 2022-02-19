@@ -1,12 +1,19 @@
 ﻿@page "/cart"
-
 @inject ICartService CartService
 
 <h3>Shopping Cart</h3>
 
+@if (CartItems == null || CartItems.Count() <= 0)
+{
+    <span>You have no items in your cart.</span>
+}
 
 
 @code {
+    protected List<CartItem> CartItems = new List<CartItem>();
 
-
+    protected override async Task OnInitializedAsync()
+    {
+        CartItems = await CartService.GetCartItems();
+    }
 }

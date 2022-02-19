@@ -8,8 +8,10 @@ namespace CastleTours.Shared.Models
 {
     public class CartItem
     {
+        public string TicketId { get; set; }
+        public DateTime TicketCreatedDate { get; set; }
+        public int TicketQty { get; set; }
         public Tour SelectedTour { get; set; }
-        public Castle Castle { get; set; }
         public List<Addon> SelectedAddons { get; set; } = new List<Addon>();
     }
 }
