@@ -72,7 +72,7 @@
 
     protected async Task AddTicketToCart()
     {
-        DateTime ticketCreatedDate = new DateTime();
+        DateTime ticketCreatedDate = DateTime.Now;
         TicketOrderService.SetTicketCreatedDate(ticketCreatedDate);
         await CartService.AddToCart(TicketOrderService.GetTicketOrder());
         await TicketOrderService.ClearTicketOrder();
