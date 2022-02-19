@@ -8,7 +8,6 @@ namespace CastleTours.Client.Services.TicketOrderService
         void ShowTicketDialog();
         void CloseTicketDialog();
         Ticket GetTicketOrder();
-        //string GetTicketOrderTotalFormatted();
         void SetCustomerName(string customerName = "Guest");
         void SetTourName(string tourName);
         void SetTicketQty(int ticketQty);

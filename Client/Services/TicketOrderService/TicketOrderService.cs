@@ -30,11 +30,6 @@ namespace CastleTours.Client.Services.TicketOrderService
             return TicketOrder;
         }
 
-        /*public string GetTicketOrderTotalFormatted()
-        {
-            return TicketOrder.TicketCost.ToString("0.00");
-        }*/
-
         public void SetCustomerName(string customerName = "Guest") //Set in the store config service
         {
             TicketOrder.CustomerName = customerName;

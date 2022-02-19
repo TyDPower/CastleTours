@@ -71,12 +71,6 @@
         TicketOrderService.SetTourLocation(location);
     }
 
-    /*protected string HandleTicketCost()
-    {
-        TicketOrderService.SetAndReturnTicketOrderTotal(SelectedTour.GetTicketPrice());
-        return TicketOrderService.GetTicketOrderTotalFormatted();
-    }*/
-
     protected async Task AddTicketToCart()
     {
         await CartService.AddToCart(TicketOrderService.GetTicketOrder());
