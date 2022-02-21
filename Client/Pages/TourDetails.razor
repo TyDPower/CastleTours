@@ -57,7 +57,7 @@
 
     [Parameter] public int Id { get; set; }
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
     {
         tour = await TourService.GetTourById(Id);
     }

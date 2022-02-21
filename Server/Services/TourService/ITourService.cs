@@ -7,5 +7,6 @@ namespace CastleTours.Server.Services.TourService
         Task<List<Tour>> GetAllTours();
         Task<List<Tour>> GetToursByCategory(string categoryUrl);
         Task<Tour> GetTourById(int id);
+        Task<List<Tour>> SearchTours(string searchText);
     }
 }

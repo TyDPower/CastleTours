@@ -33,5 +33,11 @@ namespace CastleTours.Server.Controllers
         {
             return Ok(await _tourService.GetTourById(id));
         }
+
+        [HttpGet("search/{searchText}")]
+        public async Task<ActionResult<List<Tour>>> SearchTours(string searchText)
+        {
+            return Ok(await _tourService.SearchTours(searchText));
+        }
     }
 }
