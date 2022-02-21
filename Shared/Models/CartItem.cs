@@ -11,8 +11,8 @@ namespace CastleTours.Shared.Models
         public string TicketId { get; set; }
         public DateTime TicketCreatedDate { get; set; }
         public int TicketQty { get; set; }
-        public Tour SelectedTour { get; set; }
-        public List<Addon> SelectedAddons { get; set; } = new List<Addon>();
+        public Tour? SelectedTour { get; set; }
+        public List<Addon>? SelectedAddons { get; set; } = new List<Addon>();
         public decimal GetTicketOrderTotal()
         {
             decimal addonsTotal = 0.00m;

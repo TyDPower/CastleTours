@@ -2,6 +2,7 @@
 using Blazored.Toast.Services;
 using CastleTours.Client.Services.TourService;
 using CastleTours.Shared.Models;
+using System.Net.Http.Json;
 
 namespace CastleTours.Client.Services.CartService
 {
@@ -10,14 +11,16 @@ namespace CastleTours.Client.Services.CartService
         public ILocalStorageService LocalStorage { get; }
         public IToastService ToastService { get; }
         public ITourService TourService { get; }
+        public HttpClient Http { get; }
 
         public event Action OnChange;
 
-        public CartService(ILocalStorageService localStorage, IToastService toastService, ITourService tourService)
+        public CartService(ILocalStorageService localStorage, IToastService toastService, ITourService tourService, HttpClient http)
         {
             LocalStorage = localStorage;
             ToastService = toastService;
             TourService = tourService;
+            Http = http;
         }
 
         public async Task AddToCart(Ticket ticket)
@@ -73,6 +76,19 @@ namespace CastleTours.Client.Services.CartService
             cart.Remove(cartItem);
 
             await LocalStorage.SetItemAsync("cart", cart);
+            OnChange.Invoke();
+        }
+
+        public async Task<string> Checkout()
+        {
+            var result = await Http.PostAsJsonAsync("api/payment/checkout", await GetCartItems());
+            var url = await result.Content.ReadAsStringAsync();
+            return url;
+        }
+
+        public async Task EmptyCart()
+        {
+            await LocalStorage.RemoveItemAsync("cart");
             OnChange.Invoke();
         }
     }

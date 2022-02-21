@@ -8,5 +8,7 @@ namespace CastleTours.Client.Services.CartService
         Task AddToCart(Ticket ticket);
         Task<List<CartItem>> GetCartItems();
         Task DeleteItem(CartItem item);
+        Task EmptyCart();
+        Task<string> Checkout();
     }
 }
