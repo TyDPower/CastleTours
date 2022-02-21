@@ -31,5 +31,10 @@ namespace CastleTours.Client.Services.TourService
         {
             return await _http.GetFromJsonAsync<Tour>($"api/Tour/{id}");
         }
+
+        public async Task<List<Tour>> SearchTours(string searchText)
+        {
+            return await _http.GetFromJsonAsync<List<Tour>>($"api/tour/search/{searchText}");
+        }
     }
 }

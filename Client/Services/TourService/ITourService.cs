@@ -8,5 +8,6 @@ namespace CastleTours.Client.Services.TourService
         public List<Tour> Tours { get; set; }
         Task LoadTours(string categoryUrl = null);
         Task<Tour> GetTourById(int id);
+        Task<List<Tour>> SearchTours(string searchText);
     }
 }

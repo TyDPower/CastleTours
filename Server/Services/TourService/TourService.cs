@@ -37,5 +37,12 @@ namespace CastleTours.Server.Services.TourService
             Category category = await _categoryService.GetCategoryByUrl(categoryUrl);
             return await _context.Tours.Where(t => t.CategoryId == category.Id).ToListAsync();
         }
+
+        public async Task<List<Tour>> SearchTours(string searchText)
+        {
+            return await _context.Tours
+                .Where(t => t.Name.Contains(searchText) || t.Description.Contains(searchText))
+                .ToListAsync();
+        }
     }
 }
