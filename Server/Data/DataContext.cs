@@ -18,7 +18,8 @@ namespace CastleTours.Server.Data
         public DbSet<Facility> Facilities { get; set; }
         public DbSet<Amenity> Amenities { get; set; }
         public DbSet<OperatingTime> OperatingTimes { get; set; }
-        public DbSet<Addon> Addons { get; set; } 
+        public DbSet<Addon> Addons { get; set; }
+        public DbSet<Stats> Stats { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
