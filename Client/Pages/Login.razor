@@ -5,27 +5,29 @@
 
 <h3>Login</h3>
 
-<EditForm Model="user" OnSubmit="HandleLogin">
-    <div>
+<EditForm Model="user" OnValidSubmit="HandleLogin">
+    <DataAnnotationsValidator></DataAnnotationsValidator>
+    <div class="form-group">
         <label for="username">Username</label>
         <InputText id="username" @bind-Value="user.Username" class="form-control" />
     </div>
-    <div>
+    <div class="form-group">
         <label for="password">Password</label>
         <InputText id="password" @bind-Value="user.Password" class="form-control" />
     </div>
     <br/>
     <button type="submit" class="btn btn-primary">Login</button>
+    <div class="mt-2">
+        <ValidationSummary />
+    </div>
 </EditForm>
 
 @code {
-    private User user = new User();
+    private UserLogin user = new UserLogin();
 
     private async Task HandleLogin()
     {
-        Console.WriteLine("Log me in!");
         await LocalStorage.SetItemAsStringAsync("username", user.Username);
-        //await LocalStorage.SetItemAsync<string>("username", user.Username);
         await AuthStateProvider.GetAuthenticationStateAsync();
         NavigationManager.NavigateTo("");
     }

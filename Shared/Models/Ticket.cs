@@ -16,6 +16,6 @@ namespace CastleTours.Shared.Models
         public int CustomerId { get; set; }
         public DateTime CreatedDate { get; set; }
         public int Qty { get; set; } = 1;
-        public List<Addon> TourAddons { get; set; } = new List<Addon>();
+        public List<Addon>? TourAddons { get; set; } = new List<Addon>();
     }
 }
