@@ -67,7 +67,6 @@ else
     private async Task PlaceOrder()
     {
         string checkoutUrl = await CartService.Checkout();
-        Console.WriteLine(checkoutUrl);
         NavigationManager.NavigateTo(checkoutUrl);
         await CartService.EmptyCart();
     }
