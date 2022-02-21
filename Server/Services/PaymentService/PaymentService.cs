@@ -18,7 +18,7 @@ namespace CastleTours.Server.Services.PaymentService
             {
                 PriceData = new SessionLineItemPriceDataOptions {
                     UnitAmountDecimal = cartItem.GetTicketOrderTotal() * 100,
-                    Currency = "usd",
+                    Currency = "gbp",
                     ProductData = new SessionLineItemPriceDataProductDataOptions
                     {
                         Name = cartItem.TicketId,
