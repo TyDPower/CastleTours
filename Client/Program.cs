@@ -7,6 +7,7 @@ using CastleTours.Client.Services.CategoryService;
 using CastleTours.Client.Services.StoreConfigService;
 using CastleTours.Client.Services.TicketOrderService;
 using CastleTours.Client.Services.TourService;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -21,9 +22,14 @@ builder.Services.AddScoped<ITourService, TourService>();
 builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<ITicketOrderService, TicketOrderService>();
 builder.Services.AddScoped<IStoreConfigService, StoreConfigService>();
+builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddBlazoredToast();
+
+builder.Services.AddOptions();
+
+builder.Services.AddAuthorizationCore();
 
 
 await builder.Build().RunAsync();

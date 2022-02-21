@@ -2,6 +2,7 @@
 @page "/{categoryurl}"
 @inject ICategoryService CategoryService
 @inject ITourService TourService
+@inject ISyncLocalStorageService LocalStorgae
 
 @if (Category != null)
 {
@@ -10,7 +11,15 @@
 }
 else
 {
-    <h1>Welcome to Castle Tours</h1>
+    <AuthorizeView>
+        <NotAuthorized>
+            <h1>Welcome to Castle Tours</h1>
+        </NotAuthorized>
+        <Authorized>
+            <h1>Welcome back, @LocalStorgae.GetItemAsString("username")!</h1>
+        </Authorized>
+    </AuthorizeView>
+
     <TourList />
 }
 
