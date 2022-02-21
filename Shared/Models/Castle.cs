@@ -29,7 +29,7 @@ namespace CastleTours.Shared.Models
         public DateTime DateCreated { get; set; } = DateTime.Now;
         public DateTime DateUpdated { get; set; }
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        public Category? Category { get; set; }
         public int LocationId { get; set; }
         public Location Location { get; set; }
         [JsonIgnore]
@@ -37,7 +37,7 @@ namespace CastleTours.Shared.Models
         public List<CastleComment>? CastleComments { get; set; }
         public List<Facility>? Facilities { get; set; }
         public List<Amenity>? Amenities { get; set; }
-        public List<OperatingTime> OperatingTimes { get; set; }
+        public List<OperatingTime>? OperatingTimes { get; set; }
         public string GetFormattedEnteranceFee()
         {
             string price = (EnteranceFee > 0) ? EnteranceFee.ToString("$0.00") : "No Enterance Fee";
