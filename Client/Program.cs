@@ -4,6 +4,7 @@ using CastleTours.Client;
 using CastleTours.Client.Services.CartService;
 using CastleTours.Client.Services.CastleService;
 using CastleTours.Client.Services.CategoryService;
+using CastleTours.Client.Services.StatsService;
 using CastleTours.Client.Services.StoreConfigService;
 using CastleTours.Client.Services.TicketOrderService;
 using CastleTours.Client.Services.TourService;
@@ -22,7 +23,9 @@ builder.Services.AddScoped<ITourService, TourService>();
 builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<ITicketOrderService, TicketOrderService>();
 builder.Services.AddScoped<IStoreConfigService, StoreConfigService>();
+builder.Services.AddScoped<IStatsService, StatsService>();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
+
 
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddBlazoredToast();

@@ -1,6 +1,7 @@
 using CastleTours.Server.Data;
 using CastleTours.Server.Services.CastleService;
 using CastleTours.Server.Services.CategoryService;
+using CastleTours.Server.Services.StatsService;
 using CastleTours.Server.Services.TourService;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ITourService, TourService>();
 builder.Services.AddScoped<ICastleService, CastleService>();
+builder.Services.AddScoped<IStatsService, StatsService>();
 
 
 var app = builder.Build();
