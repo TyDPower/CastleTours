@@ -1,0 +1,45 @@
+﻿using CastleTours.Server.Data;
+using CastleTours.Shared.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace CastleTours.Server.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AuthController : ControllerBase
+    {
+        private readonly IAuthRepository _authRepo;
+
+        public AuthController(IAuthRepository authRepo)
+        {
+            _authRepo = authRepo;
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(UserRegister request)
+        {
+            var response = await _authRepo.Register(
+                new User
+                {
+                    FirstName = request.FirstName,
+                    LastName = request.LastName,
+                    Email = request.Email,
+                    MobileNumber = request.MobileNumber,
+                    Bio = request.Bio,
+                    DateOfBirth = request.DateOfBirth,
+                    IsConfirmed = request.IsConfirmed,
+                    ReadTsAndCs = request.ReadTsAndCs,
+                    RecieveNewsletters = request.RecieveNewsletters,
+                }, request.Password);
+
+            if (!response.Success)
+            { 
+                return BadRequest(response);
+            }
+
+            return Ok(response);
+
+        }
+    }
+}

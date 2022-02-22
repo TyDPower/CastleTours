@@ -20,6 +20,7 @@ namespace CastleTours.Server.Data
         public DbSet<OperatingTime> OperatingTimes { get; set; }
         public DbSet<Addon> Addons { get; set; }
         public DbSet<Stats> Stats { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

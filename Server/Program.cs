@@ -23,6 +23,7 @@ builder.Services.AddScoped<ITourService, TourService>();
 builder.Services.AddScoped<ICastleService, CastleService>();
 builder.Services.AddScoped<IStatsService, StatsService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
+builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 
 
 var app = builder.Build();

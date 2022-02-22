@@ -1,6 +1,7 @@
 using Blazored.LocalStorage;
 using Blazored.Toast;
 using CastleTours.Client;
+using CastleTours.Client.Services.AuthService;
 using CastleTours.Client.Services.CartService;
 using CastleTours.Client.Services.CastleService;
 using CastleTours.Client.Services.CategoryService;
@@ -24,6 +25,7 @@ builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<ITicketOrderService, TicketOrderService>();
 builder.Services.AddScoped<IStoreConfigService, StoreConfigService>();
 builder.Services.AddScoped<IStatsService, StatsService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 
 
