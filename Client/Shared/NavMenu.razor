@@ -51,10 +51,18 @@
                     <a class="nav-link" @onclick="Logout" style="cursor: pointer">
                         <span class="oi oi-account-logout" aria-hidden="true"></span> Logout
                     </a>
-                </Authorized>
-                
+                </Authorized> 
             </AuthorizeView>
-            
+        </div>
+
+        <div class="nav-item px-3">
+            <AuthorizeView>
+                <NotAuthorized>
+                    <NavLink class="nav-link" href="/registration">
+                        <span class="oi oi-clipboard" aria-hidden="true"></span> Register
+                    </NavLink>
+                </NotAuthorized>
+            </AuthorizeView>
         </div>
 
     </nav>
