@@ -19,7 +19,13 @@ namespace CastleTours.Server.Services.CastleService
 
         public async Task<Castle> GetCastleById(int id)
         {
-            Castle castle = await _context.Castles.Include(c => c.Facilities).FirstOrDefaultAsync(c => c.Id == id);
+            Castle castle = await _context.Castles
+                .Include(c => c.Facilities)
+                .Include(c => c.OperatingTimes)
+                .Include(c => c.CastleComments)
+                .Include(c => c.Location)
+                .Include(c => c.Amenities)
+                .FirstOrDefaultAsync(c => c.Id == id);
             return castle;
         }
     }
