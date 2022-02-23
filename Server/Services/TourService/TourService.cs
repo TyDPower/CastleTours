@@ -43,7 +43,23 @@ namespace CastleTours.Server.Services.TourService
         public async Task<List<Tour>> SearchTours(string searchText)
         {
             return await _context.Tours
-                .Where(t => t.Name.Contains(searchText) || t.Description.Contains(searchText))
+                .Include(t => t.Castle)
+                .Include(t => t.Castle.Location)
+                .Include(t => t.Addons)
+                .Include(t => t.Facilities)
+                .Include(t => t.OperatingTimes)
+                .Include(t => t.TourComments)
+                .Where(t => t.Name.Contains(searchText) ||
+                t.Description.Contains(searchText) ||
+                t.Castle.Location.Region.Contains(searchText) ||
+                t.Castle.Location.Country.Contains(searchText) ||
+                t.Castle.Location.Area.Contains(searchText) ||
+                t.Castle.Location.Postcode.Contains(searchText) ||
+                t.Castle.Location.Coordinates.Contains(searchText) ||
+                t.Castle.Description.Contains(searchText) ||
+                t.Castle.Type.Contains(searchText) ||
+                t.Castle.Name.Contains(searchText) ||
+                t.Castle.Date.Contains(searchText))
                 .ToListAsync();
         }
     }
