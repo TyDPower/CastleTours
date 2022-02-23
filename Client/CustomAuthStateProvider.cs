@@ -34,7 +34,7 @@ namespace CastleTours.Client
                 {
                     identity = new ClaimsIdentity(ParseClaimsFromJwt(authToken), "jwt");
                     Http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authToken.Replace("\"", ""));
-                    await UserService.GetUserDetails();
+                    await UserService.GetUserDetailsFromDb();
                 }
                 catch (Exception)
                 {
