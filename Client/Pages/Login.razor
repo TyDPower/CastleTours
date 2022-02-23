@@ -25,6 +25,9 @@
 </EditForm>
 
 @code {
+
+    //Should this be a component?
+
     private UserLogin user = new UserLogin();
 
     private async Task HandleLogin()
@@ -32,13 +35,13 @@
         var result = await AuthService.Login(user);
         if (result.Success)
         {
-            await LocalStorage.SetItemAsStringAsync("username", user.Email);
-            await AuthStateProvider.GetAuthenticationStateAsync(); 
+            await LocalStorage.SetItemAsync<string>("authToken", result.Data);
+            await AuthStateProvider.GetAuthenticationStateAsync();
+            NavigationManager.NavigateTo("/");
         }
         else
         {
             ToastService.ShowError(result.Message);
         }
-        //NavigationManager.NavigateTo("");
     }
 }

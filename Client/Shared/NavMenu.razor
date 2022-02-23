@@ -1,6 +1,7 @@
 ﻿@inject ICategoryService CategoryService
 @inject ILocalStorageService LocalStroage
 @inject AuthenticationStateProvider AuthStateProvider
+@inject NavigationManager NavigationManager
 
 <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
@@ -83,9 +84,10 @@
         await CategoryService.LoadCategories();
     }
 
-    protected async Task Logout()
+    protected async void Logout()
     {
-        await LocalStroage.RemoveItemAsync("username");
+        await LocalStroage.RemoveItemAsync("authToken");
         await AuthStateProvider.GetAuthenticationStateAsync();
+        NavigationManager.NavigateTo("/");
     }
 }
