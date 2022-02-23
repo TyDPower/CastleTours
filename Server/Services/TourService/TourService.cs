@@ -28,6 +28,8 @@ namespace CastleTours.Server.Services.TourService
                 .Include(t => t.Castle.Location)
                 .Include(t => t.Addons)
                 .Include(t => t.Facilities)
+                .Include(t => t.OperatingTimes)
+                .Include(t => t.TourComments)
                 .FirstOrDefaultAsync(t => t.Id == id);
             return tour;
         }
