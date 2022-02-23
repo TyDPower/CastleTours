@@ -1,7 +1,23 @@
 ﻿@page "/usersettings"
+@inject IUserService UserService
 
 <h3>UserSettings</h3>
 
+<h3>@User.FirstName</h3>
+<h3>@User.LastName</h3>
+<h3>@User.DateOfBirth</h3>
+<h3>@User.Email</h3>
+<h3>@User.MobileNumber</h3>
+<h3>@User.RecieveNewsletters</h3>
+
+
 @code {
+    private User User;
+
+    protected override void OnInitialized()
+    {
+        User = new User();
+        User = UserService.GetUserDetails();
+    }
 
 }

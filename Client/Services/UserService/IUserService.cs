@@ -1,7 +1,10 @@
-﻿namespace CastleTours.Client.Services.UserService
+﻿using CastleTours.Shared.Models;
+
+namespace CastleTours.Client.Services.UserService
 {
     public interface IUserService
     {
-        Task GetUserDetails();
+        Task GetUserDetailsFromDb();
+        User GetUserDetails();
     }
 }
