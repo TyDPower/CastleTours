@@ -1,4 +1,5 @@
 ﻿using Blazored.LocalStorage;
+using CastleTours.Client.Services.UserService;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Net.Http.Headers;
 using System.Security.Claims;
@@ -8,10 +9,13 @@ namespace CastleTours.Client
 {
     public class CustomAuthStateProvider : AuthenticationStateProvider
     {
-        public CustomAuthStateProvider(ILocalStorageService localStorage, HttpClient http)
+        private readonly IUserService UserService;
+
+        public CustomAuthStateProvider(ILocalStorageService localStorage, HttpClient http, IUserService userService)
         {
             LocalStorage = localStorage;
             Http = http;
+            UserService = userService;
         }
 
         public ILocalStorageService LocalStorage { get; }
@@ -26,8 +30,17 @@ namespace CastleTours.Client
 
             if (!string.IsNullOrEmpty(authToken))
             {
-                identity = new ClaimsIdentity(ParseClaimsFromJwt(authToken), "jwt");
-                Http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authToken);
+                try
+                {
+                    identity = new ClaimsIdentity(ParseClaimsFromJwt(authToken), "jwt");
+                    Http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authToken.Replace("\"", ""));
+                    await UserService.GetUserDetails();
+                }
+                catch (Exception)
+                {
+                    await LocalStorage.RemoveItemAsync("authToken");
+                    identity = new ClaimsIdentity();
+                }
             }
 
             var user = new ClaimsPrincipal(identity);

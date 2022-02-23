@@ -9,6 +9,7 @@ using CastleTours.Client.Services.StatsService;
 using CastleTours.Client.Services.StoreConfigService;
 using CastleTours.Client.Services.TicketOrderService;
 using CastleTours.Client.Services.TourService;
+using CastleTours.Client.Services.UserService;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -26,6 +27,7 @@ builder.Services.AddScoped<ITicketOrderService, TicketOrderService>();
 builder.Services.AddScoped<IStoreConfigService, StoreConfigService>();
 builder.Services.AddScoped<IStatsService, StatsService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 
 
