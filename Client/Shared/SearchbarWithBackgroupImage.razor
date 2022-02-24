@@ -1,0 +1,55 @@
+﻿@inject ITourService TourService
+@inject NavigationManager NavigationManager
+
+<div class="container-fluid container-image" style="background-image: url('/AppImages/Castle1.jpg');">
+    <div class="row justify-content-center py-auto">
+        <div class="col-6">
+            <h3>Text over here</h3>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <h6>Additional text here</h6>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <BlazoredTypeahead  SearchMethod="@SearchTours"
+                                TValue="Tour"
+                                TItem="Tour"
+                                Value="SelectedTour"
+                                ValueChanged="HandleSearch"
+                                ValueExpression="@(()=> SelectedTour)"
+                                placeholder="Search...">
+
+                <SelectedTemplate>
+                    @context.Name
+                </SelectedTemplate>
+                <ResultTemplate>
+                    @context.Name
+                </ResultTemplate>
+                <NotFoundTemplate>
+                    Sorry, no tours found...
+                </NotFoundTemplate>
+            </BlazoredTypeahead>
+        </div>
+    </div>
+</div>
+
+@code {
+    private Tour SelectedTour;
+
+    private void HandleSearch(Tour tour)
+    {
+        if (tour == null) return;
+        SelectedTour = tour;
+        NavigationManager.NavigateTo($"tour/{SelectedTour.Id}");
+    }
+
+    private async Task<IEnumerable<Tour>> SearchTours(string searchText)
+    {
+        var response = await TourService.SearchTours(searchText);
+        return response;
+    }
+
+}

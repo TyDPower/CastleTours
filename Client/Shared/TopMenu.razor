@@ -1,27 +1,6 @@
 ﻿@inject ISyncLocalStorageService LocalStorage
 @inject ICartService CartService
-@inject ITourService TourService
-@inject NavigationManager NavigationManager
 @implements IDisposable
-
-<BlazoredTypeahead  SearchMethod="@SearchTours"
-                    TValue="Tour"
-                    TItem="Tour"
-                    Value="SelectedTour"
-                    ValueChanged="HandleSearch"
-                    ValueExpression="@(()=> SelectedTour)"
-                    placeholder="Search...">
-
-    <SelectedTemplate>
-        @context.Name
-    </SelectedTemplate>
-    <ResultTemplate>
-        @context.Name
-    </ResultTemplate>
-    <NotFoundTemplate>
-        Sorry, no tours found...
-    </NotFoundTemplate>
-</BlazoredTypeahead>
 
 <a href="cart" class="btn btn-info">
     <i class="oi oi-cart"></i> Cart
@@ -29,8 +8,6 @@
 </a>
 
 @code {
-    private Tour SelectedTour;
-
     protected override void OnInitialized()
     {
         CartService.OnChange += StateHasChanged;
@@ -45,18 +22,5 @@
     {
         var cart = LocalStorage.GetItem<List<Ticket>>("cart");
         return cart != null ? cart.Count : 0;
-    }
-
-    private void HandleSearch(Tour tour)
-    {
-        if (tour == null) return;
-        SelectedTour = tour;
-        NavigationManager.NavigateTo($"tour/{SelectedTour.Id}");
-    }
-
-    private async Task<IEnumerable<Tour>> SearchTours(string searchText)
-    {
-        var response = await TourService.SearchTours(searchText);
-        return response;
     }
 }
