@@ -14,17 +14,12 @@ namespace CastleTours.Client.Services.TourService
         {
             _http = http;
         }
-        public async Task LoadTours(string categoryUrl = null)
+        public async Task LoadTours(string categoryUrl)
         {
             if (categoryUrl == null)
             {
                 Tours = await _http.GetFromJsonAsync<List<Tour>>($"api/Tour");
             }
-            else
-            {
-                Tours = await _http.GetFromJsonAsync<List<Tour>>($"api/Tour/Category/{categoryUrl}");
-            }
-            OnChange.Invoke();
         }
 
         public async Task<Tour> GetTourById(int id)
@@ -36,5 +31,18 @@ namespace CastleTours.Client.Services.TourService
         {
             return await _http.GetFromJsonAsync<List<Tour>>($"api/tour/search/{searchText}");
         }
+
+        /*public async Task LoadTours(string categoryUrl = null)
+        {
+            if (categoryUrl == null)
+            {
+                Tours = await _http.GetFromJsonAsync<List<Tour>>($"api/Tour");
+            }
+            else
+            {
+                Tours = await _http.GetFromJsonAsync<List<Tour>>($"api/Tour/Category/{categoryUrl}");
+            }
+            OnChange.Invoke();
+        }*/
     }
 }

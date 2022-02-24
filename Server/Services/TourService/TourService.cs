@@ -18,7 +18,12 @@ namespace CastleTours.Server.Services.TourService
 
         public async Task<List<Tour>> GetAllTours()
         {
-            return await _context.Tours.ToListAsync();
+            return await _context.Tours
+                .Include(t => t.Castle)
+                .Include(t => t.Castle.Location)
+                .Include(t => t.Facilities)
+                .Include(t => t.TourComments)
+                .ToListAsync();
         }
 
         public async Task<Tour> GetTourById(int id)

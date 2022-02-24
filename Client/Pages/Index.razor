@@ -1,5 +1,4 @@
 ﻿@page "/"
-@page "/{categoryurl}"
 @inject ICategoryService CategoryService
 @inject ITourService TourService
 @inject IUserService UserService
@@ -22,8 +21,6 @@ else
         </Authorized>
     </AuthorizeView>
 
-    <SearchbarWithBackgroupImage />
-
     <TourList />
 }
 
@@ -42,13 +39,6 @@ else
         
     }
 
-    protected override async Task OnInitializedAsync()
-    {
-        await StatsService.IncrementVisits();
-        await StatsService.GetVisits();
-    }
-
-
     protected override async Task OnParametersSetAsync()
     {
         await TourService.LoadTours(CategoryUrl);
@@ -60,8 +50,6 @@ else
         else
         {
             Category = null;
-        }
-
-        
+        }  
     }
 }

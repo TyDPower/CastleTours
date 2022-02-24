@@ -1,11 +1,38 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    <main>
-        <article class="content" style="padding:0rem !important;">
-            @Body
-        </article>
-    </main>
-</div>
-
 <BlazoredToasts />
+<MudThemeProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar>
+        <MudIcon Icon="@Icons.Filled.Castle" />
+        <MudSpacer />
+        <Searchbar />
+        <MudIconButton Icon="@Icons.Filled.Menu" OnClick="@(() => OpenMenu(Anchor.End))" />
+    </MudAppBar>
+    <MudDrawer @bind-Open="@open" Anchor="@anchor" Elevation="1" Variant="@DrawerVariant.Temporary">
+    <MudDrawerHeader>
+        <MudText Typo="Typo.h6">Castle Tours</MudText>
+    </MudDrawerHeader>
+    <MudNavMenu>
+        <MudNavLink Match="NavLinkMatch.All" Href="/">Home</MudNavLink>
+        <MudNavLink Match="NavLinkMatch.All" Href="/tours">Tours</MudNavLink>
+        <MudNavLink Match="NavLinkMatch.All" Href="/castles">Castles</MudNavLink>
+    </MudNavMenu>
+</MudDrawer>
+    <MudMainContent>
+        @Body
+    </MudMainContent>
+</MudLayout>
+@code {
+    bool open;
+    Anchor anchor;
+    
+    void OpenMenu(Anchor anchor)
+    {
+        open = true;
+        this.anchor = anchor;
+    }
+}

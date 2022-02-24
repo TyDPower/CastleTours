@@ -26,7 +26,7 @@ namespace CastleTours.Shared.Models
         public Castle? Castle { get; set; }
         public int? CategoryId { get; set; }
         public Category? Category { get; set; }
-        public List<TourComment>? TourComments { get; set; }
+        public List<TourComment>? TourComments { get; set; } = new List<TourComment>();
         public List<OperatingTime>? OperatingTimes { get; set; }
         public List<Addon> Addons { get; set; } = new List<Addon>();
         public List<Facility> Facilities { get; set; } = new List<Facility>();
@@ -41,6 +41,19 @@ namespace CastleTours.Shared.Models
         {
             decimal tourBasePrice = (SpecialPrice != 0 && SpecialPrice < Price) ? SpecialPrice : Price;
             return tourBasePrice;
+        }
+
+        public int GetTourRating()
+        {
+            int total = 0;
+            int averageRating = 0;
+            foreach(var comment in TourComments)
+            {
+                total += comment.Rating;
+                averageRating = total / TourComments.Count;
+            }
+
+            return averageRating;
         }
     }
 }
