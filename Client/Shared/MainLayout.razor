@@ -1,4 +1,8 @@
-﻿@inherits LayoutComponentBase
+﻿@inject NavigationManager NavigationManager
+@inject ISyncLocalStorageService LocalStorage
+@inject ICartService CartService
+@implements IDisposable
+@inherits LayoutComponentBase
 
 <BlazoredToasts />
 <MudThemeProvider />
@@ -8,9 +12,11 @@
 <MudLayout>
     <MudAppBar>
         <MudIcon Icon="@Icons.Filled.Castle" />
+        <MudText Typo="Typo.h4" Style="margin-left:0.5rem;">Castle Tours</MudText>
         <MudSpacer />
         <Searchbar />
-        <MudIconButton Icon="@Icons.Filled.Menu" OnClick="@(() => OpenMenu(Anchor.End))" />
+        <MudFab StartIcon="@Icons.Filled.ShoppingCart" Color="Color.Primary" Label="@GetTicketCount()" Size="Size.Small" Style="margin:0 1.2rem;" />
+        <MudFab Color="Color.Primary" StartIcon="@Icons.Filled.Menu" OnClick="@(() => OpenMenu(Anchor.End))" Size="Size.Small" />
     </MudAppBar>
     <MudDrawer @bind-Open="@open" Anchor="@anchor" Elevation="1" Variant="@DrawerVariant.Temporary">
     <MudDrawerHeader>
@@ -26,13 +32,35 @@
         @Body
     </MudMainContent>
 </MudLayout>
+
 @code {
     bool open;
     Anchor anchor;
-    
+
     void OpenMenu(Anchor anchor)
     {
         open = true;
         this.anchor = anchor;
+    }
+
+    protected override void OnInitialized()
+    {
+        CartService.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        CartService.OnChange -= StateHasChanged;
+    }
+
+    protected string GetTicketCount()
+    {
+        var cart = LocalStorage.GetItem<List<Ticket>>("cart");
+        return cart != null ? cart.Count.ToString() : "0";
+    }
+
+    private void HandleShoppingCart()
+    {
+        NavigationManager.NavigateTo("/cart");
     }
 }

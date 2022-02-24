@@ -1,12 +1,14 @@
 ﻿.flex-container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-content: space-around;
+    overflow: scroll;
     padding: 0 1rem;
 }
 
-.mud-item-card {
-    border-radius: 10px !important;
-    margin: 1rem 0 !important;
+.flex-items {
+    padding: 1.2rem 0;
+}
+
+.flex-items:hover {
+    cursor: pointer;
+    transform: scale(1.05);
 }

@@ -231,7 +231,8 @@ namespace CastleTours.Server.Data
                     Area = "Beeston",
                     Region = "Cheshire",
                     Country = "England",
-                    Postcode = "CW6 9TX"
+                    Postcode = "CW6 9TX",
+                    CountryIsoCode = "gb"
                 },
                 new Location
                 {
@@ -243,7 +244,8 @@ namespace CastleTours.Server.Data
                     Area = "Chester",
                     Region = "Cheshire",
                     Country = "England",
-                    Postcode = "CH1 2AN"
+                    Postcode = "CH1 2AN",
+                    CountryIsoCode = "gb"
                 },
                 new Location
                 {
@@ -254,7 +256,8 @@ namespace CastleTours.Server.Data
                     Area = "Malpas",
                     Region = "Cheshire",
                     Country = "England",
-                    Postcode = "SY14 8AH"
+                    Postcode = "SY14 8AH",
+                    CountryIsoCode = "gb"
                 },
                 new Location
                 {
@@ -266,7 +269,8 @@ namespace CastleTours.Server.Data
                     Area = "Deddington",
                     Region = "Oxford",
                     Country = "England",
-                    Postcode = "CW5 7NJ"
+                    Postcode = "CW5 7NJ",
+                    CountryIsoCode = "gb"
                 },
                 new Location
                 {
@@ -278,7 +282,8 @@ namespace CastleTours.Server.Data
                     Area = "Halton",
                     Region = "Chesire",
                     Country = "England",
-                    Postcode = "WA7 2BE"
+                    Postcode = "WA7 2BE",
+                    CountryIsoCode = "gb"
                 },
                 new Location
                 {
@@ -290,7 +295,8 @@ namespace CastleTours.Server.Data
                     Area = "Peckford",
                     Region = "Chesire",
                     Country = "England",
-                    Postcode = "CW6 9TN"
+                    Postcode = "CW6 9TN",
+                    CountryIsoCode = "gb"
                 }
             );
 

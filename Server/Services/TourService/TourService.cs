@@ -22,6 +22,7 @@ namespace CastleTours.Server.Services.TourService
                 .Include(t => t.Castle)
                 .Include(t => t.Castle.Location)
                 .Include(t => t.Facilities)
+                .Include(t => t.Addons)
                 .Include(t => t.TourComments)
                 .ToListAsync();
         }
