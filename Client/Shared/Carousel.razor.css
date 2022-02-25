@@ -1,0 +1,11 @@
+﻿.carousel-text {
+    padding-top: 7rem;
+    margin-left: 10vw;
+}
+
+@media (max-width: 800px) {
+    .carousel-text {
+        padding: 2rem;
+        margin: 1rem;
+    }
+} 

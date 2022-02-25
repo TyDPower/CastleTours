@@ -11,7 +11,7 @@ namespace CastleTours.Shared.Models
     {
         public int TourId { get; set; }
         [JsonIgnore]
-        public Tour Tour { get; set; }
+        public Tour? Tour { get; set; }
         public int Rating { get; set; }
     }
 }

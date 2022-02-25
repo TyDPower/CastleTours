@@ -1,0 +1,49 @@
+﻿.flex-container {
+    display: flex;
+    padding: 10rem 1rem;
+    justify-content: center;
+}
+
+.flex-items {
+    padding: 1.2rem 0;
+}
+
+    .flex-items:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+        transition: 0.50s;
+    }
+
+.category-card {
+    background-image: url("./AppImages/castle1.jpg");
+    height: 350px;
+    display: flex;
+    align-items: flex-end;
+    border-radius: 10px;
+}
+
+.category-card-caption {
+    padding-left: 1.5rem;
+    padding-top: 1.5rem;
+    width: 100%;
+    background-color: rgb(128, 128, 128, 0.7);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.category-card-text {
+    font-weight: bold;
+    color: white;
+}
+
+
+
+@media (max-width: 1200px) {
+    .flex-container {
+        display: flex;
+        padding: 0 1rem;
+        justify-content: left;
+        overflow: scroll;
+    }
+
+}

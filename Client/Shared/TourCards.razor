@@ -1,0 +1,63 @@
+﻿@inject ICategoryService CategoryService
+@inject ITourService TourService
+@inject ITicketOrderService TicketOrderService
+@inject NavigationManager NavigationManager
+
+<div class="flex-container">
+    @foreach (var t in TourService.Tours)
+    {
+        <div class="flex-items" onclick="@(() => HandleOpenTour(t.Id))">
+            <MudCard Elevation="10" Square="true" Style="border-radius:10px;margin:1rem;width:15.5rem;">
+                <div class="mud-card-media category-card" style="background-image: url('@t.ImgUrl');">
+                    <div class="category-card-items">
+                        <MudAvatar Color="Color.Secondary">
+                            <img    src="https://flagcdn.com/w80/gb.png"
+                                    alt="@t.Castle.Location.Country">
+                        </MudAvatar>
+                    </div>
+                    <div class="category-card-items">
+                        <h4>@t.Castle.Location.Region</h4>
+                    </div>
+                </div>
+                <div class="category-card-footer">
+                    <MudText Typo="Typo.h6" Style="font-weight:bold;">@t.Name</MudText>
+                    <MudText Typo="Typo.subtitle1" Style="font-weight:bold;">From $@t.GetTicketPriceFormatted() per person</MudText>
+                    <MudCardActions Style="padding:0px;marging:0px;">
+                        <MudIconButton Icon="@Icons.Filled.AddShoppingCart" OnClick="@(() => HandleOpenTicketDialog(t))" />
+                        <MudSpacer />
+                        <MudRating SelectedValue="@t.GetTourRating()" />
+                    </MudCardActions>
+                </div>
+            </MudCard>
+        </div>
+    }
+</div>
+
+@if (TicketOrderService.GetTicketDialogStatus())
+{
+    <TicketDialog   OnClose="@TicketOrderService.CloseTicketDialog" 
+                    SelectedTour="@SelectedTour" />
+}
+
+
+@code {
+
+    private Tour SelectedTour { get; set; } = new Tour();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await TourService.LoadTours();
+    }
+
+    private void HandleOpenTour(int id)
+    {
+        NavigationManager.NavigateTo($"/tour/{id}");
+    }
+
+    private void HandleOpenTicketDialog(Tour t)
+    {
+        SelectedTour = t;
+        TicketOrderService.ShowTicketDialog();
+    }
+}
+

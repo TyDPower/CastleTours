@@ -1,0 +1,24 @@
+﻿<div class="flex-container">
+    @foreach (var i in intList)
+    {
+        <div class="flex-items" onclick="@(() => HandleClick("id"))">
+            <MudCard Elevation="10" Square="true" Style="border-radius:10px;margin:1rem;width:12.5rem;">
+                <div class="mud-card-media category-card">
+                    <div class="category-card-caption">
+                        <h4 class="category-card-text">Family Tours</h4>
+                        <p class="category-card-text">Fun for the whole family</p>
+                    </div>
+                </div>
+            </MudCard>
+        </div>
+    }
+</div>
+
+@code {
+    int[] intList = { 1, 2, 3, 4, 5 };
+
+    private void HandleClick(string a) //needs an ID => string a just a place holder
+    {
+        Console.WriteLine(a);
+    }
+}

@@ -26,7 +26,7 @@ namespace CastleTours.Shared.Models
         public Castle? Castle { get; set; }
         public int? CategoryId { get; set; }
         public Category? Category { get; set; }
-        public List<TourComment>? TourComments { get; set; } = new List<TourComment>();
+        public List<TourComment>? TourComments { get; set; }
         public List<OperatingTime>? OperatingTimes { get; set; }
         public List<Addon> Addons { get; set; } = new List<Addon>();
         public List<Facility> Facilities { get; set; } = new List<Facility>();

@@ -1,0 +1,30 @@
+﻿
+<div>
+    <MudCarousel Class="mud-width-full" Style="height:100vh;" ShowArrows="@arrows" ShowBullets="@bullets" AutoCycle="@autocycle" TData="object">
+        @foreach (var i in intList)
+        {
+            <MudCarouselItem Transition="transition">
+                <div class="d-flex" style="height:100%;background-image:url('./AppImages/Castle3.jpg')">
+                    <div class="carousel-text">
+                        <MudText Align="Align.Left" Typo="Typo.h6" Class="text-white">
+                            <b>Left</b> Lorem ipsum dolor sit amet.
+                        </MudText>
+                        <MudText Align="Align.Left" Typo="Typo.h2" Class="text-white">
+                            <b>Left</b> Lorem ipsum dolor sit amet.
+                        </MudText>
+                    </div>
+                </div>
+            </MudCarouselItem>
+        }
+    </MudCarousel>
+</div>
+
+
+@code{
+    private bool arrows = true;
+    private bool bullets = true;
+    private bool autocycle = false;
+    private Transition transition = Transition.Slide;
+
+    int[] intList = { 1, 2, 3 };
+}

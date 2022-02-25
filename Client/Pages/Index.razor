@@ -5,24 +5,32 @@
 
 @inject IStatsService StatsService
 
-@if (Category != null)
-{
-    <h1>Welcome to the @Category.Name section.</h1>
-    <TourList />
-}
-else
-{
-    <AuthorizeView>
-        <NotAuthorized>
-            <h1>Welcome to Castle Tours</h1>
-        </NotAuthorized>
-        <Authorized>
-            <h1>Welcome back, @User.FirstName</h1>
-        </Authorized>
-    </AuthorizeView>
+<div>
+    <Carousel />
+    <CategoryCards />
+    <TourCards />
 
-    <TourList />
-}
+    @if (Category != null)
+    {
+        <h1>Welcome to the @Category.Name section.</h1>
+        <TourList />
+    }
+    else
+    {
+        <AuthorizeView>
+            <NotAuthorized>
+                <h1>Welcome to Castle Tours</h1>
+            </NotAuthorized>
+            <Authorized>
+                <h1>Welcome back, @User.FirstName</h1>
+            </Authorized>
+        </AuthorizeView>
+
+        <TourList />
+    }
+</div>
+
+
 
 
 
