@@ -1,0 +1,11 @@
+﻿@using BlazorLeaflet
+@using System.Drawing
+
+<div id="mapContainer" style="width: 300px; height: 300px;">
+    <LeafletMap Map="_map" />
+</div>
+
+@code {
+    private Map _map = new Map(jsRuntime);
+    private PointF _startAt = new PointF(47.5574007f, 16.3918687f);
+}
