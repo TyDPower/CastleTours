@@ -4,38 +4,6 @@
 @inject ITicketOrderService TicketOrderService
 @inject NavigationManager NavigationManager
 
-<div class="flex-container">
-    @foreach (var t in TourService.Tours)
-    {
-        <div class="flex-items" onclick="@(() => HandleOpenTour(t.Id))">
-            <MudCard Elevation="10" Square="true" Style="border-radius:10px;margin:1rem;min-width:22.5rem;">
-                <MudCardHeader>
-                    <CardHeaderAvatar>
-                        <MudAvatar Color="Color.Secondary">
-                            <img    src="https://flagcdn.com/w80/gb.png"
-                                    alt="@t.Castle.Location.Country">
-                        </MudAvatar>
-                    </CardHeaderAvatar>
-                    <CardHeaderContent>
-                        <MudText Typo="Typo.body1">@t.Name</MudText>
-                        <MudText Typo="Typo.body2">@t.Castle.Location.Area</MudText>
-                    </CardHeaderContent>
-                    <CardHeaderActions>
-                        <MudIconButton Icon="@Icons.Outlined.Info" OnClick="@(() => HandleOpenTour(t.Id))" />
-                    </CardHeaderActions>
-                </MudCardHeader>
-                <MudCardMedia Image="@t.ImgUrl" Height="200" Title="@t.Name" />
-                <MudCardActions>
-                    <MudIconButton Icon="@Icons.Outlined.Info" OnClick="@(() => HandleOpenTour(t.Id))" />
-                    <MudIconButton Icon="@Icons.Filled.AddShoppingCart" OnClick="@(() => HandleOpenTicketDialog(t))" />
-                    <MudSpacer />
-                    <MudRating SelectedValue="@t.GetTourRating()" />
-                </MudCardActions>
-            </MudCard>
-        </div>
-    }
-</div>
-
 @if (TicketOrderService.GetTicketDialogStatus())
 {
     <TicketDialog   OnClose="@TicketOrderService.CloseTicketDialog" 

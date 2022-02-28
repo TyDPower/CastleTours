@@ -5,43 +5,11 @@
 @inherits LayoutComponentBase
 
 <BlazoredToasts />
-<MudThemeProvider />
-<MudDialogProvider />
-<MudSnackbarProvider />
-
-<MudLayout>
-    <MudAppBar>
-        <MudIcon Icon="@Icons.Filled.Castle" />
-        <MudText Typo="Typo.h4" Style="margin-left:0.5rem;">Castle Tours</MudText>
-        <MudSpacer />
-        <Searchbar />
-        <MudFab StartIcon="@Icons.Filled.ShoppingCart" Color="Color.Primary" Label="@GetTicketCount()" Size="Size.Small" Style="margin:0 1.2rem;" />
-        <MudFab Color="Color.Primary" StartIcon="@Icons.Filled.Menu" OnClick="@(() => OpenMenu(Anchor.End))" Size="Size.Small" />
-    </MudAppBar>
-    <MudDrawer @bind-Open="@open" Anchor="@anchor" Elevation="1" Variant="@DrawerVariant.Temporary">
-    <MudDrawerHeader>
-        <MudText Typo="Typo.h6">Castle Tours</MudText>
-    </MudDrawerHeader>
-    <MudNavMenu>
-        <MudNavLink Match="NavLinkMatch.All" Href="/">Home</MudNavLink>
-        <MudNavLink Match="NavLinkMatch.All" Href="/tours">Tours</MudNavLink>
-        <MudNavLink Match="NavLinkMatch.All" Href="/castles">Castles</MudNavLink>
-    </MudNavMenu>
-</MudDrawer>
-    <MudMainContent>
-        @Body
-    </MudMainContent>
-</MudLayout>
+<div>
+    @Body
+</div>
 
 @code {
-    bool open;
-    Anchor anchor;
-
-    void OpenMenu(Anchor anchor)
-    {
-        open = true;
-        this.anchor = anchor;
-    }
 
     protected override void OnInitialized()
     {
