@@ -11,11 +11,9 @@
     <PackageReference Include="Blazored.LocalStorage" Version="4.2.0" />
     <PackageReference Include="Blazored.Toast" Version="3.2.2" />
     <PackageReference Include="Blazored.Typeahead" Version="4.6.0" />
-    <PackageReference Include="BlazorLeaflet" Version="0.4.0-alpha" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.2" PrivateAssets="all" />
-    <PackageReference Include="MudBlazor" Version="6.0.7" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +27,7 @@
   <ItemGroup>
     <Folder Include="Services\LocationService\" />
     <Folder Include="Services\AmentityService\" />
+    <Folder Include="wwwroot\vendor\jquery.cookie\test\" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,92 @@
+﻿@inject ILocalStorageService LocalStroageAsync
+@inject ISyncLocalStorageService LocalStorageSync
+@inject AuthenticationStateProvider AuthStateProvider
+@inject NavigationManager NavigationManager
+@inject ICartService CartService
+@implements IDisposable
+
+<header class="header custom-header-fixed">
+      <!-- Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+        <div class="container-fluid">
+          <div class="d-flex align-items-center">
+            <a class="navbar-brand py-3" href="index.html" style="line-height: 0;">
+                <i class="fa-brands fa-fort-awesome"></i> &nbsp; Castle Tours
+            </a>
+            <TypeaheadSearchBar PlaceHolderText="Search tours & areas..."/>
+          </div>
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+          <!-- Navbar Collapse -->
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <form class="form-inline mt-4 mb-2 d-sm-none" action="#" id="searchcollapsed">
+              <div class="input-label-absolute input-label-absolute-left w-100">
+                <label class="label-absolute" for="searchcollapsed_search"><i class="fa fa-search"></i><span class="sr-only">What are you looking for?</span></label>
+                <input class="form-control form-control-sm border-0 shadow-0 bg-gray-200" id="searchcollapsed_search" placeholder="Search" aria-label="Search" type="search">
+              </div>
+            </form>
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item position-static">
+                  <a class="nav-link" href="./accounts/user/wishlist">
+                      <i class="fa-solid fa-heart"></i> &nbsp;Wishlist
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./help">
+                      <i class="fa-solid fa-circle-info"></i> &nbsp;Help
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link active" href="/cart">
+                      <i class="fa-solid fa-cart-shopping"></i> &nbsp;Cart (@GetTicketCount())
+                  </a>
+              </li>
+              <AuthorizeView>
+                  <Authorized>
+                      <li class="nav-item mt-3 mt-lg-0 ms-lg-3 d-lg-none d-xl-inline-block">
+                          <button class="btn btn-primary" @onclick="Logout">
+                              <i class="fa-solid fa-arrow-right-to-bracket"></i> &nbsp;Sign Out
+                          </button>
+                      </li>
+                  </Authorized>
+                  <NotAuthorized>
+                      <li class="nav-item">
+                          <a class="nav-link" href="./accounts/sign-in">
+                              <i class="fa-solid fa-arrow-right-to-bracket"></i> &nbsp;Sign in
+                          </a>
+                      </li>
+                      <li class="nav-item mt-3 mt-lg-0 ms-lg-3 d-lg-none d-xl-inline-block">
+                          <a class="btn btn-primary" href="./accounts/sign-up">Sign up</a>
+                      </li>
+                  </NotAuthorized>
+              </AuthorizeView>
+              
+            </ul>
+          </div>
+        </div>
+    </nav>
+</header>
+
+@code {
+    protected override void OnInitialized()
+    {
+        CartService.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        CartService.OnChange -= StateHasChanged;
+    }
+
+    protected string GetTicketCount()
+    {
+        var cart = LocalStorageSync.GetItem<List<Ticket>>("cart");
+        return cart != null ? cart.Count.ToString() : "0";
+    }
+
+    protected async void Logout()
+    {
+        await LocalStroageAsync.RemoveItemAsync("authToken");
+        await AuthStateProvider.GetAuthenticationStateAsync();
+        NavigationManager.NavigateTo("/");
+    }
+}

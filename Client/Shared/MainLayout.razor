@@ -5,30 +5,13 @@
 @inherits LayoutComponentBase
 
 <BlazoredToasts />
+<MainHeaderLayout />
 <div>
     @Body
 </div>
+<ImageBannerFullWidth />
+<MainFooterLayout />
 
 @code {
 
-    protected override void OnInitialized()
-    {
-        CartService.OnChange += StateHasChanged;
-    }
-
-    public void Dispose()
-    {
-        CartService.OnChange -= StateHasChanged;
-    }
-
-    protected string GetTicketCount()
-    {
-        var cart = LocalStorage.GetItem<List<Ticket>>("cart");
-        return cart != null ? cart.Count.ToString() : "0";
-    }
-
-    private void HandleShoppingCart()
-    {
-        NavigationManager.NavigateTo("/cart");
-    }
 }

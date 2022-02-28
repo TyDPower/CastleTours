@@ -16,6 +16,24 @@
     <link href="./lib/font-awesome/css/all.css" rel="stylesheet" />
     <link href="_content/Blazored.Typeahead/blazored-typeahead.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- Price Slider Stylesheets -->
+    <link rel="stylesheet" href="vendor/nouislider/nouislider.css">
+    <!-- Google fonts - Playfair Display-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700">
+    <!-- Google fonts - Poppins-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,400i,700">
+    <!-- swiper-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.1/css/swiper.min.css">
+    <!-- Magnigic Popup-->
+    <link rel="stylesheet" href="vendor/magnific-popup/magnific-popup.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/favicon.png">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <!-- Swiper CSS-->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
 </head>
 
 <body>
@@ -30,6 +48,55 @@
     <script>navigator.serviceWorker.register('service-worker.js');</script>
     <script src="lib/font-awesome/js/all.js"></script>
     <script src="_content/Blazored.Typeahead/blazored-typeahead.js"></script>
+    <!-- JavaScript files-->
+    <script>
+        // ------------------------------------------------------- //
+        //   Inject SVG Sprite -
+        //   see more here
+        //   https://css-tricks.com/ajaxing-svg-sprite/
+        // ------------------------------------------------------ //
+        function injectSvgSprite(path) {
+
+            var ajax = new XMLHttpRequest();
+            ajax.open("GET", path, true);
+            ajax.send();
+            ajax.onload = function (e) {
+                var div = document.createElement("div");
+                div.className = 'd-none';
+                div.innerHTML = ajax.responseText;
+                document.body.insertBefore(div, document.body.childNodes[0]);
+            }
+        }
+        // to avoid CORS issues when viewing using file:// protocol, using the demo URL for the SVG sprite
+        // use your own URL in production, please :)
+        // https://demo.bootstrapious.com/directory/1-0/icons/orion-svg-sprite.svg
+        //- injectSvgSprite('${path}icons/orion-svg-sprite.svg');
+        injectSvgSprite('https://demo.bootstrapious.com/directory/1-4/icons/orion-svg-sprite.svg');
+
+    </script>
+    <!-- jQuery-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <!-- Bootstrap JS bundle - Bootstrap + PopperJS-->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Magnific Popup - Lightbox for the gallery-->
+    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <!-- Smooth scroll-->
+    <script src="vendor/smooth-scroll/smooth-scroll.polyfills.min.js"></script>
+    <!-- Bootstrap Select-->
+    <script src="vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
+    <!-- Object Fit Images - Fallback for browsers that don't support object-fit-->
+    <script src="vendor/object-fit-images/ofi.min.js"></script>
+    <!-- Swiper Carousel                       -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.1/js/swiper.min.js"></script>
+    <script>var basePath = ''</script>
+    <!-- Main Theme JS file    -->
+    <script src="js/theme.js"></script>
+    <!-- Swiper CDN    -->
+    <script type="module">
+        import Swiper from 'https://unpkg.com/swiper@8/swiper-bundle.esm.browser.min.js'
+        const swiper = new Swiper(...)
+    </script>
+    <script src="./js/custom.js"></script>
 </body>
 
 </html>
