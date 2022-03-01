@@ -32,6 +32,12 @@ namespace CastleTours.Client.Services.TourService
             return await _http.GetFromJsonAsync<List<Tour>>($"api/tour/search/{searchText}");
         }
 
+        public async Task<FeaturedTour> GetFeaturedTour()
+        {
+            return await _http.GetFromJsonAsync<FeaturedTour>($"api/tour/featured");
+        }
+
+
         /*public async Task LoadTours(string categoryUrl = null)
         {
             if (categoryUrl == null)

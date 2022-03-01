@@ -9,5 +9,6 @@ namespace CastleTours.Client.Services.TourService
         Task LoadTours(string categoryUrl = null);
         Task<Tour> GetTourById(int id);
         Task<List<Tour>> SearchTours(string searchText);
+        Task<FeaturedTour> GetFeaturedTour();
     }
 }
