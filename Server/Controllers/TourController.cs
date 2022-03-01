@@ -39,5 +39,11 @@ namespace CastleTours.Server.Controllers
         {
             return Ok(await _tourService.SearchTours(searchText));
         }
+
+        [HttpGet("featured")]
+        public async Task<ActionResult<Tour>> GetFeaturedTour()
+        {
+            return Ok(await _tourService.GetFeaturedTour());
+        }
     }
 }
