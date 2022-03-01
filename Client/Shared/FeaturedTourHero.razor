@@ -1,17 +1,19 @@
-﻿<!-- Slider main container-->
+﻿@inject ITourService TourService
+
+<!-- Slider main container-->
     <div class="swiper-container home-slider multi-slider">
       <!-- Additional required wrapper-->
       <div class="swiper-wrapper">
         <!-- Slides-->
-        <div class="swiper-slide bg-cover dark-overlay" style="background-image: url('https://th.bing.com/th/id/R.bb550545afd48d8ae77307363370a55d?rik=ZzKNsIDOcO3tPg&riu=http%3a%2f%2fwallup.net%2fwp-content%2fuploads%2f2016%2f01%2f207095-landscape-castle-Edinburgh-Scotland-UK.jpg&ehk=8eM1O612fOuUrOp1Aa9KhN03%2flt1%2fx6YcdNHavii6DA%3d&risl=&pid=ImgRaw&r=0');">
+        <div class="swiper-slide bg-cover dark-overlay" style="background-image: url('@featured.TourImageUrl');">
           <div class="container h-100">
             <div class="d-flex h-100 text-white overlay-content align-items-center" data-swiper-parallax="-500">
               <div class="w-100">
                 <div class="row">
                   <div class="col-lg-6">
                     <p class="subtitle text-white letter-spacing-3 mb-3 font-weight-light">Most besieged castle in Eorupe</p>
-                    <h2 class="display-3 fw-bold mb-3" style="line-height: 1">Edinburgh Castle</h2>
-                    <a class="btn btn-outline-light d-none d-sm-inline-block" href="./tours/edinburgh-castle">
+                    <h2 class="display-3 fw-bold mb-3" style="line-height: 1">@featured.CastleName</h2>
+                    <a class="btn btn-outline-light d-none d-sm-inline-block" href="./tours/@featured.TourId">
                         Start exploring <i class="fa fa-angle-right ms-2"></i>
                     </a>
                   </div>
@@ -22,7 +24,7 @@
                           </div>
                           <div>
                             <h5>Tickets</h5>
-                            <div class="badge badge-light">from $345</div>
+                            <div class="badge badge-light">from @featured.TourBasePrice</div>
                           </div>
                       </a>
                       <a class="d-flex text-reset text-decoration-none hover-animate mb-2 mb-md-5" href="#">
@@ -31,7 +33,7 @@
                           </div>
                           <div>
                             <h5>Experiances</h5>
-                            <div class="badge badge-light">from $1,245</div>
+                            <div class="badge badge-light">from @featured.ExperaincesBasePrice</div>
                           </div>
                       </a>
                       <a class="d-flex text-reset text-decoration-none hover-animate" href="#">
@@ -52,5 +54,10 @@
     </div>
 </div>
 @code {
+    private FeaturedTour featured = new FeaturedTour(); 
 
+    protected override async Task OnInitializedAsync()
+    {
+        featured = await TourService.GetFeaturedTour();
+    }
 }
