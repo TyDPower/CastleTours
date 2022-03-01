@@ -14,6 +14,8 @@ namespace CastleTours.Shared.Models
         public bool IsOperating { get; set; } = true;
         public bool IsPublic { get; set; } = true;
         public bool IsDeleted { get; set; } = false;
+        public bool IsFeatured { get; set; } = false;
+        public string? Blurb { get; set; }
         public string ImgUrl { get; set; }
         public string Description { get; set; }
         [Column(TypeName = "decimal(18,2)")]
@@ -22,7 +24,9 @@ namespace CastleTours.Shared.Models
         public decimal SpecialPrice { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.Now;
         public DateTime DateUpdated { get; set; }
+        [ForeignKey("castle")]
         public int CastleId { get; set; }
+        [ForeignKey("castleId")]
         public Castle? Castle { get; set; }
         public int? CategoryId { get; set; }
         public Category? Category { get; set; }
