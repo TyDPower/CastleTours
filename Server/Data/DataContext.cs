@@ -126,6 +126,19 @@ namespace CastleTours.Server.Data
                     Price = 13M,
                     SpecialPrice = 10.50m,
                     CategoryId = 2,
+                },
+                new Tour()
+                {
+                    Id = 9,
+                    CastleId = 7,
+                    Name = "The Besieged Tour",
+                    ImgUrl = "https://th.bing.com/th/id/R.bb550545afd48d8ae77307363370a55d?rik=ZzKNsIDOcO3tPg&riu=http%3a%2f%2fwallup.net%2fwp-content%2fuploads%2f2016%2f01%2f207095-landscape-castle-Edinburgh-Scotland-UK.jpg&ehk=8eM1O612fOuUrOp1Aa9KhN03%2flt1%2fx6YcdNHavii6DA%3d&risl=&pid=ImgRaw&r=0",
+                    Description = "This tour is part of the National Heritage English History Tour. Its aimed at children 12 to 17 but adult are welcome to learn with us.",
+                    IsFeatured = true,
+                    Blurb = "Explore the most besieged castle in Eorupe!",
+                    Price = 32M,
+                    SpecialPrice = 25m,
+                    CategoryId = 2,
                 }
             );
 
@@ -217,6 +230,21 @@ namespace CastleTours.Server.Data
                     EnteranceFee = 15.00M,
                     CategoryId = 1,
                     LocationId = 6,
+                },
+                new Castle
+                {
+                    Id = 7,
+                    Name = "Edinburgh Castle",
+                    Type = "Royal fortress",
+                    Date = "11th - 21st Centuries",
+                    Condition = "Intact",
+                    Description = "Site of a castle since the 12th century, Edinburgh Castle contains buildings of multiple periods and functions, including the royal palace, great hall, and 19th-century barracks.",
+                    Summary = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer pharetra viverra mattis.",
+                    ImgUrl = "https://upload.wikimedia.org/wikipedia/commons/4/4b/Peckforton_Castle_1.jpg",
+                    WikiUrl = "https://en.wikipedia.org/wiki/Peckforton_Castle",
+                    EnteranceFee = 18.00M,
+                    CategoryId = 1,
+                    LocationId = 7,
                 }
             );
 
@@ -296,6 +324,19 @@ namespace CastleTours.Server.Data
                     Region = "Chesire",
                     Country = "England",
                     Postcode = "CW6 9TN",
+                    CountryIsoCode = "gb"
+                },
+                new Location
+                {
+                    Id = 7,
+                    OpenStreetMapUrl = "https://www.openstreetmap.org/?mlat=55.948611&mlon=-3.200833&zoom=15#map=15/55.9486/-3.2008",
+                    GoogleMapsUrl = "https://www.google.com/maps/place/55%C2%B056'55.0%22N+3%C2%B012'03.0%22W/@55.948611,-3.200833,15z/data=!4m5!3m4!1s0x0:0x5eaa0460843a6e07!8m2!3d55.948611!4d-3.200833?hl=en",
+                    Coordinates = "55.948611, -3.200833",
+                    Street = "Castlehill",
+                    Area = "Edinburgh",
+                    Region = "",
+                    Country = "Scotland",
+                    Postcode = "EH1 2YT",
                     CountryIsoCode = "gb"
                 }
             );
@@ -670,6 +711,18 @@ namespace CastleTours.Server.Data
                     Id = 32,
                     TourId = 8,
                     Time = "Saturdays 10am - 3pm"
+                },
+                new OperatingTime
+                {
+                    Id = 33,
+                    TourId = 9,
+                    Time = "Mondays - Saturdays 9am - 4pm"
+                },
+                new OperatingTime
+                {
+                    Id = 34,
+                    TourId = 9,
+                    Time = "Sundays 9am - 3pm"
                 }
             );
 
