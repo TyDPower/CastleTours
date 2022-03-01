@@ -1,0 +1,8 @@
+﻿.icons {
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 1.7em;
+}
+
+.ticket {
+    transform: rotate(-45deg)
+}
