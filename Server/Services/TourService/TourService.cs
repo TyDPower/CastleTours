@@ -52,5 +52,29 @@ namespace CastleTours.Server.Services.TourService
                 .Where(t => t.Name.Contains(searchText) || t.Description.Contains(searchText))
                 .ToListAsync();
         }
+
+        public async Task<FeaturedTour> GetFeaturedTour()
+        {
+            var tours = await _context.Tours.Include(t => t.Castle)
+                .Include(t => t.Castle.Location)
+                .Include(t => t.TourComments)
+                .ToListAsync();
+            var tour = tours.Where(t => t.IsFeatured).FirstOrDefault();
+
+            FeaturedTour featuredTour = new()
+            {
+                TourId = tour.Id,
+                TourName = tour.Name,
+                TourImageUrl = tour.ImgUrl,
+                TourBlurb = tour.Blurb,
+                TourBasePrice = tour.GetTicketPriceFormatted(),
+                TourRating = tour.GetTourRating(),
+                CastleId = tour.Castle.Id,
+                CastleName = tour.Castle.Name,
+                ExperaincesBasePrice = "0.00"           
+            };
+
+            return featuredTour;
+        }
     }
 }
