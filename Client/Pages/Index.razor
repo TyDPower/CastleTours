@@ -5,15 +5,11 @@
 
 <div>
     <FeaturedTourHero />
-    <TrendingAreas />
     <LastMinuteDeals />
     <CategoryDividerFullWidth />
     <FeaturedListingsNearUser />
     <Testimonials />
 </div>
-
-
-
 
 
 @code {
@@ -26,7 +22,6 @@
     {
         User = new User();
         User = UserService.GetUserDetails();
-        
     }
 
     protected override async Task OnParametersSetAsync()
