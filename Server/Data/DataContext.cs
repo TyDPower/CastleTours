@@ -21,9 +21,14 @@ namespace CastleTours.Server.Data
         public DbSet<Addon> Addons { get; set; }
         public DbSet<Stats> Stats { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Favorite> Favorites { get; set; }
+        public DbSet<StoreTransaction> StoreTransactions { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
+
             modelBuilder.Entity<Category>().HasData(
                 new Category
                 {

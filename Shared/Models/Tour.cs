@@ -24,9 +24,7 @@ namespace CastleTours.Shared.Models
         public decimal SpecialPrice { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.Now;
         public DateTime DateUpdated { get; set; }
-        [ForeignKey("castle")]
         public int CastleId { get; set; }
-        [ForeignKey("castleId")]
         public Castle? Castle { get; set; }
         public int? CategoryId { get; set; }
         public Category? Category { get; set; }

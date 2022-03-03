@@ -375,7 +375,7 @@ namespace CastleTours.Server.Migrations
                             CategoryId = 1,
                             Condition = "Ruins",
                             Date = "13–14th century",
-                            DateCreated = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6405),
+                            DateCreated = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9313),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer pharetra viverra mattis. Maecenas at venenatis velit, nec sagittis felis. Proin ac ultricies justo, id vestibulum sem. Etiam sed diam quis dolor iaculis iaculis. Nullam augue ipsum, pharetra pharetra ex ac, molestie dignissim est. Duis in nulla ut odio scelerisque laoreet. Proin id suscipit diam. Vestibulum ullamcorper in ante suscipit iaculis.",
                             EnteranceFee = 12.00m,
@@ -396,7 +396,7 @@ namespace CastleTours.Server.Migrations
                             CategoryId = 1,
                             Condition = "Fragment",
                             Date = "12th century",
-                            DateCreated = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6416),
+                            DateCreated = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9322),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer pharetra viverra mattis. Maecenas at venenatis velit, nec sagittis felis. Proin ac ultricies justo, id vestibulum sem. Etiam sed diam quis dolor iaculis iaculis. Nullam augue ipsum, pharetra pharetra ex ac, molestie dignissim est. Duis in nulla ut odio scelerisque laoreet. Proin id suscipit diam. Vestibulum ullamcorper in ante suscipit iaculis.",
                             EnteranceFee = 13.00m,
@@ -417,7 +417,7 @@ namespace CastleTours.Server.Migrations
                             CategoryId = 1,
                             Condition = "Intact",
                             Date = "1801–19th Century",
-                            DateCreated = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6480),
+                            DateCreated = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9325),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer pharetra viverra mattis. Maecenas at venenatis velit, nec sagittis felis. Proin ac ultricies justo, id vestibulum sem. Etiam sed diam quis dolor iaculis iaculis. Nullam augue ipsum, pharetra pharetra ex ac, molestie dignissim est. Duis in nulla ut odio scelerisque laoreet. Proin id suscipit diam. Vestibulum ullamcorper in ante suscipit iaculis.",
                             EnteranceFee = 0m,
@@ -438,7 +438,7 @@ namespace CastleTours.Server.Migrations
                             CategoryId = 1,
                             Condition = "Substantially intact",
                             Date = "c. 1403",
-                            DateCreated = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6485),
+                            DateCreated = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9328),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer pharetra viverra mattis. Maecenas at venenatis velit, nec sagittis felis. Proin ac ultricies justo, id vestibulum sem. Etiam sed diam quis dolor iaculis iaculis. Nullam augue ipsum, pharetra pharetra ex ac, molestie dignissim est. Duis in nulla ut odio scelerisque laoreet. Proin id suscipit diam. Vestibulum ullamcorper in ante suscipit iaculis.",
                             EnteranceFee = 0m,
@@ -459,7 +459,7 @@ namespace CastleTours.Server.Migrations
                             CategoryId = 1,
                             Condition = "Fragmentary remains",
                             Date = "13th century",
-                            DateCreated = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6488),
+                            DateCreated = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9331),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer pharetra viverra mattis. Maecenas at venenatis velit, nec sagittis felis. Proin ac ultricies justo, id vestibulum sem. Etiam sed diam quis dolor iaculis iaculis. Nullam augue ipsum, pharetra pharetra ex ac, molestie dignissim est. Duis in nulla ut odio scelerisque laoreet. Proin id suscipit diam. Vestibulum ullamcorper in ante suscipit iaculis.",
                             EnteranceFee = 13.50m,
@@ -480,7 +480,7 @@ namespace CastleTours.Server.Migrations
                             CategoryId = 1,
                             Condition = "Intact",
                             Date = "1844–50",
-                            DateCreated = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6492),
+                            DateCreated = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9334),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer pharetra viverra mattis. Maecenas at venenatis velit, nec sagittis felis. Proin ac ultricies justo, id vestibulum sem. Etiam sed diam quis dolor iaculis iaculis. Nullam augue ipsum, pharetra pharetra ex ac, molestie dignissim est. Duis in nulla ut odio scelerisque laoreet. Proin id suscipit diam. Vestibulum ullamcorper in ante suscipit iaculis.",
                             EnteranceFee = 15.00m,
@@ -501,7 +501,7 @@ namespace CastleTours.Server.Migrations
                             CategoryId = 1,
                             Condition = "Intact",
                             Date = "11th - 21st Centuries",
-                            DateCreated = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6496),
+                            DateCreated = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9337),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Site of a castle since the 12th century, Edinburgh Castle contains buildings of multiple periods and functions, including the royal palace, great hall, and 19th-century barracks.",
                             EnteranceFee = 18.00m,
@@ -563,7 +563,7 @@ namespace CastleTours.Server.Migrations
                             Author = "Sit Amet",
                             CastleId = 1,
                             CommentText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum facilisis leo vel fringilla est ullamcorper. Integer malesuada nunc vel risus commodo viverra maecenas accumsan lacus.",
-                            CreatedDate = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6550),
+                            CreatedDate = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9390),
                             Heading = "Lorem ipsum dolor sit amet",
                             IsPublic = false
                         },
@@ -573,7 +573,7 @@ namespace CastleTours.Server.Migrations
                             Author = "Sit Amet",
                             CastleId = 2,
                             CommentText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum facilisis leo vel fringilla est ullamcorper. Integer malesuada nunc vel risus commodo viverra maecenas accumsan lacus.",
-                            CreatedDate = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6556),
+                            CreatedDate = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9395),
                             Heading = "Lorem ipsum dolor sit amet",
                             IsPublic = false
                         },
@@ -583,7 +583,7 @@ namespace CastleTours.Server.Migrations
                             Author = "Sit Amet",
                             CastleId = 2,
                             CommentText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum facilisis leo vel fringilla est ullamcorper. Integer malesuada nunc vel risus commodo viverra maecenas accumsan lacus.",
-                            CreatedDate = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6558),
+                            CreatedDate = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9398),
                             Heading = "Lorem ipsum dolor sit amet",
                             IsPublic = false
                         },
@@ -593,7 +593,7 @@ namespace CastleTours.Server.Migrations
                             Author = "Sit Amet",
                             CastleId = 3,
                             CommentText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum facilisis leo vel fringilla est ullamcorper. Integer malesuada nunc vel risus commodo viverra maecenas accumsan lacus.",
-                            CreatedDate = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6561),
+                            CreatedDate = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9400),
                             Heading = "Lorem ipsum dolor sit amet",
                             IsPublic = false
                         },
@@ -603,7 +603,7 @@ namespace CastleTours.Server.Migrations
                             Author = "Sit Amet",
                             CastleId = 4,
                             CommentText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum facilisis leo vel fringilla est ullamcorper. Integer malesuada nunc vel risus commodo viverra maecenas accumsan lacus.",
-                            CreatedDate = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6564),
+                            CreatedDate = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9402),
                             Heading = "Lorem ipsum dolor sit amet",
                             IsPublic = false
                         },
@@ -613,7 +613,7 @@ namespace CastleTours.Server.Migrations
                             Author = "Sit Amet",
                             CastleId = 4,
                             CommentText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum facilisis leo vel fringilla est ullamcorper. Integer malesuada nunc vel risus commodo viverra maecenas accumsan lacus.",
-                            CreatedDate = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6567),
+                            CreatedDate = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9404),
                             Heading = "Lorem ipsum dolor sit amet",
                             IsPublic = false
                         },
@@ -623,7 +623,7 @@ namespace CastleTours.Server.Migrations
                             Author = "Sit Amet",
                             CastleId = 4,
                             CommentText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum facilisis leo vel fringilla est ullamcorper. Integer malesuada nunc vel risus commodo viverra maecenas accumsan lacus.",
-                            CreatedDate = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6570),
+                            CreatedDate = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9407),
                             Heading = "Lorem ipsum dolor sit amet",
                             IsPublic = false
                         },
@@ -633,7 +633,7 @@ namespace CastleTours.Server.Migrations
                             Author = "Sit Amet",
                             CastleId = 5,
                             CommentText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum facilisis leo vel fringilla est ullamcorper. Integer malesuada nunc vel risus commodo viverra maecenas accumsan lacus.",
-                            CreatedDate = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6573),
+                            CreatedDate = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9409),
                             Heading = "Lorem ipsum dolor sit amet",
                             IsPublic = false
                         });
@@ -747,6 +747,30 @@ namespace CastleTours.Server.Migrations
                             Note = "Sit amet purus gravida quis blandit turpis.",
                             Type = "Resturant"
                         });
+                });
+
+            modelBuilder.Entity("CastleTours.Shared.Models.Favorite", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("DateFavorited")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("TourId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Favorites");
                 });
 
             modelBuilder.Entity("CastleTours.Shared.Models.Location", b =>
@@ -1139,6 +1163,31 @@ namespace CastleTours.Server.Migrations
                     b.ToTable("Stats");
                 });
 
+            modelBuilder.Entity("CastleTours.Shared.Models.StoreTransaction", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<decimal>("TicketCost")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("TicketId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TourId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("StoreTransactions");
+                });
+
             modelBuilder.Entity("CastleTours.Shared.Models.Tour", b =>
                 {
                     b.Property<int>("Id")
@@ -1206,7 +1255,7 @@ namespace CastleTours.Server.Migrations
                             Id = 1,
                             CastleId = 1,
                             CategoryId = 1,
-                            DateCreated = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6305),
+                            DateCreated = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9183),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This tour is part of the National Heritage English History Tour. Its aimed at children 12 to 17 but adult are welcome to learn with us.",
                             ImgUrl = "https://www.getoutwiththekids.co.uk/wp-content/uploads/2019/10/Approaching-the-draw-bridge-castle-Day-Out.jpg",
@@ -1223,7 +1272,7 @@ namespace CastleTours.Server.Migrations
                             Id = 2,
                             CastleId = 1,
                             CategoryId = 2,
-                            DateCreated = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6348),
+                            DateCreated = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9223),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This tour is part of the Wild Flowers Tour ",
                             ImgUrl = "https://www.getoutwiththekids.co.uk/wp-content/uploads/2019/10/Approaching-the-draw-bridge-castle-Day-Out.jpg",
@@ -1240,7 +1289,7 @@ namespace CastleTours.Server.Migrations
                             Id = 3,
                             CastleId = 2,
                             CategoryId = 2,
-                            DateCreated = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6353),
+                            DateCreated = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9227),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This tour is part of the National Heritage English History Tour. Learn about the keep and bailey",
                             ImgUrl = "https://eu-assets.simpleview-europe.com/chester/imageresizer/?image=%2Fdmsimgs%2Fcastle_1980095267.png&action=ProductDetail",
@@ -1257,7 +1306,7 @@ namespace CastleTours.Server.Migrations
                             Id = 4,
                             CastleId = 3,
                             CategoryId = 2,
-                            DateCreated = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6357),
+                            DateCreated = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9230),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Come and join us for a romantic roam around one of Englands finest Neo-romantic castles.",
                             ImgUrl = "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/13/0e/df/8a/cholmondeley-castle.jpg?w=1200&h=1200&s=1",
@@ -1274,7 +1323,7 @@ namespace CastleTours.Server.Migrations
                             Id = 5,
                             CastleId = 4,
                             CategoryId = 2,
-                            DateCreated = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6361),
+                            DateCreated = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9271),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This tour is currently unavalible as the structure is currently deemed as unsafe.",
                             ImgUrl = "https://www.webbaviation.co.uk/aerial/_data/i/galleries/cheshire/doddington/Doddington_Castle_fb32098-me.jpg",
@@ -1291,7 +1340,7 @@ namespace CastleTours.Server.Migrations
                             Id = 6,
                             CastleId = 4,
                             CategoryId = 1,
-                            DateCreated = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6364),
+                            DateCreated = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9274),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This tour is currently unavalible as the structure is currently deemed as unsafe.",
                             ImgUrl = "https://www.webbaviation.co.uk/aerial/_data/i/galleries/cheshire/doddington/Doddington_Castle_fb32098-me.jpg",
@@ -1308,7 +1357,7 @@ namespace CastleTours.Server.Migrations
                             Id = 7,
                             CastleId = 5,
                             CategoryId = 2,
-                            DateCreated = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6368),
+                            DateCreated = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9277),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This tour is part of the National Heritage English History Tour. Its aimed at children 12 to 17 but adult are welcome to learn with us.",
                             ImgUrl = "https://www.webbaviation.co.uk/aerial/galleries/cheshire/runcorn/Halton_Castle_Runcorn_jd28047.jpg",
@@ -1325,7 +1374,7 @@ namespace CastleTours.Server.Migrations
                             Id = 8,
                             CastleId = 6,
                             CategoryId = 2,
-                            DateCreated = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6372),
+                            DateCreated = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9281),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This tour is part of the National Heritage English History Tour. Its aimed at children 12 to 17 but adult are welcome to learn with us.",
                             ImgUrl = "https://cdn0.hitched.co.uk/vendor/3537/3_2/960/jpg/dji-0389-low-res_4_183537-163664362614439.jpeg",
@@ -1343,7 +1392,7 @@ namespace CastleTours.Server.Migrations
                             Blurb = "Explore the most besieged castle in Eorupe!",
                             CastleId = 7,
                             CategoryId = 2,
-                            DateCreated = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6376),
+                            DateCreated = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9284),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "This tour is part of the National Heritage English History Tour. Its aimed at children 12 to 17 but adult are welcome to learn with us.",
                             ImgUrl = "https://th.bing.com/th/id/R.bb550545afd48d8ae77307363370a55d?rik=ZzKNsIDOcO3tPg&riu=http%3a%2f%2fwallup.net%2fwp-content%2fuploads%2f2016%2f01%2f207095-landscape-castle-Edinburgh-Scotland-UK.jpg&ehk=8eM1O612fOuUrOp1Aa9KhN03%2flt1%2fx6YcdNHavii6DA%3d&risl=&pid=ImgRaw&r=0",
@@ -1404,7 +1453,7 @@ namespace CastleTours.Server.Migrations
                             Id = 1,
                             Author = "Sit Amet",
                             CommentText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum facilisis leo vel fringilla est ullamcorper. Integer malesuada nunc vel risus commodo viverra maecenas accumsan lacus.",
-                            CreatedDate = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6595),
+                            CreatedDate = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9433),
                             Heading = "Lorem ipsum dolor sit amet",
                             IsPublic = false,
                             Rating = 3,
@@ -1415,7 +1464,7 @@ namespace CastleTours.Server.Migrations
                             Id = 2,
                             Author = "Sit Amet",
                             CommentText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum facilisis leo vel fringilla est ullamcorper. Integer malesuada nunc vel risus commodo viverra maecenas accumsan lacus.",
-                            CreatedDate = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6600),
+                            CreatedDate = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9437),
                             Heading = "Lorem ipsum dolor sit amet",
                             IsPublic = false,
                             Rating = 4,
@@ -1426,7 +1475,7 @@ namespace CastleTours.Server.Migrations
                             Id = 3,
                             Author = "Sit Amet",
                             CommentText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum facilisis leo vel fringilla est ullamcorper. Integer malesuada nunc vel risus commodo viverra maecenas accumsan lacus.",
-                            CreatedDate = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6603),
+                            CreatedDate = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9439),
                             Heading = "Lorem ipsum dolor sit amet",
                             IsPublic = false,
                             Rating = 5,
@@ -1437,7 +1486,7 @@ namespace CastleTours.Server.Migrations
                             Id = 4,
                             Author = "Sit Amet",
                             CommentText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum facilisis leo vel fringilla est ullamcorper. Integer malesuada nunc vel risus commodo viverra maecenas accumsan lacus.",
-                            CreatedDate = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6606),
+                            CreatedDate = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9442),
                             Heading = "Lorem ipsum dolor sit amet",
                             IsPublic = false,
                             Rating = 2,
@@ -1448,7 +1497,7 @@ namespace CastleTours.Server.Migrations
                             Id = 5,
                             Author = "Sit Amet",
                             CommentText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum facilisis leo vel fringilla est ullamcorper. Integer malesuada nunc vel risus commodo viverra maecenas accumsan lacus.",
-                            CreatedDate = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6609),
+                            CreatedDate = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9444),
                             Heading = "Lorem ipsum dolor sit amet",
                             IsPublic = false,
                             Rating = 5,
@@ -1459,7 +1508,7 @@ namespace CastleTours.Server.Migrations
                             Id = 6,
                             Author = "Sit Amet",
                             CommentText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum facilisis leo vel fringilla est ullamcorper. Integer malesuada nunc vel risus commodo viverra maecenas accumsan lacus.",
-                            CreatedDate = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6612),
+                            CreatedDate = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9446),
                             Heading = "Lorem ipsum dolor sit amet",
                             IsPublic = false,
                             Rating = 4,
@@ -1470,7 +1519,7 @@ namespace CastleTours.Server.Migrations
                             Id = 7,
                             Author = "Sit Amet",
                             CommentText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum facilisis leo vel fringilla est ullamcorper. Integer malesuada nunc vel risus commodo viverra maecenas accumsan lacus.",
-                            CreatedDate = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6615),
+                            CreatedDate = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9449),
                             Heading = "Lorem ipsum dolor sit amet",
                             IsPublic = false,
                             Rating = 4,
@@ -1481,7 +1530,7 @@ namespace CastleTours.Server.Migrations
                             Id = 8,
                             Author = "Sit Amet",
                             CommentText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum facilisis leo vel fringilla est ullamcorper. Integer malesuada nunc vel risus commodo viverra maecenas accumsan lacus.",
-                            CreatedDate = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6618),
+                            CreatedDate = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9451),
                             Heading = "Lorem ipsum dolor sit amet",
                             IsPublic = false,
                             Rating = 3,
@@ -1492,7 +1541,7 @@ namespace CastleTours.Server.Migrations
                             Id = 9,
                             Author = "Sit Amet",
                             CommentText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum facilisis leo vel fringilla est ullamcorper. Integer malesuada nunc vel risus commodo viverra maecenas accumsan lacus.",
-                            CreatedDate = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6621),
+                            CreatedDate = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9453),
                             Heading = "Lorem ipsum dolor sit amet",
                             IsPublic = false,
                             Rating = 5,
@@ -1503,7 +1552,7 @@ namespace CastleTours.Server.Migrations
                             Id = 10,
                             Author = "Sit Amet",
                             CommentText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum facilisis leo vel fringilla est ullamcorper. Integer malesuada nunc vel risus commodo viverra maecenas accumsan lacus.",
-                            CreatedDate = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6624),
+                            CreatedDate = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9456),
                             Heading = "Lorem ipsum dolor sit amet",
                             IsPublic = false,
                             Rating = 4,
@@ -1514,7 +1563,7 @@ namespace CastleTours.Server.Migrations
                             Id = 11,
                             Author = "Sit Amet",
                             CommentText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum facilisis leo vel fringilla est ullamcorper. Integer malesuada nunc vel risus commodo viverra maecenas accumsan lacus.",
-                            CreatedDate = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6627),
+                            CreatedDate = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9458),
                             Heading = "Lorem ipsum dolor sit amet",
                             IsPublic = false,
                             Rating = 3,
@@ -1525,7 +1574,7 @@ namespace CastleTours.Server.Migrations
                             Id = 12,
                             Author = "Sit Amet",
                             CommentText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum facilisis leo vel fringilla est ullamcorper. Integer malesuada nunc vel risus commodo viverra maecenas accumsan lacus.",
-                            CreatedDate = new DateTime(2022, 3, 1, 10, 1, 57, 521, DateTimeKind.Local).AddTicks(6629),
+                            CreatedDate = new DateTime(2022, 3, 3, 14, 38, 15, 259, DateTimeKind.Local).AddTicks(9460),
                             Heading = "Lorem ipsum dolor sit amet",
                             IsPublic = false,
                             Rating = 3,
@@ -1740,6 +1789,15 @@ namespace CastleTours.Server.Migrations
                     b.Navigation("Castle");
                 });
 
+            modelBuilder.Entity("CastleTours.Shared.Models.Favorite", b =>
+                {
+                    b.HasOne("CastleTours.Shared.Models.User", null)
+                        .WithMany("Favorites")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("CastleTours.Shared.Models.OperatingTime", b =>
                 {
                     b.HasOne("CastleTours.Shared.Models.Castle", null)
@@ -1812,6 +1870,11 @@ namespace CastleTours.Server.Migrations
                     b.Navigation("OperatingTimes");
 
                     b.Navigation("TourComments");
+                });
+
+            modelBuilder.Entity("CastleTours.Shared.Models.User", b =>
+                {
+                    b.Navigation("Favorites");
                 });
 #pragma warning restore 612, 618
         }
