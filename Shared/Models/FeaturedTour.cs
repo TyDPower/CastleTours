@@ -10,6 +10,6 @@
         public int TourRating { get; set; }
         public int CastleId { get; set; }
         public string CastleName { get; set; }
-        public string ExperaincesBasePrice { get; set; }
+        public string CorporateBasePrice { get; set; }
     }
 }
