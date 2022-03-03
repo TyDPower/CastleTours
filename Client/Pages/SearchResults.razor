@@ -1,0 +1,7 @@
+﻿@page "/search/{searchText}"
+
+<SearchToursExperiences SearchText="@searchText" />
+
+@code {
+    [Parameter] public string searchText { get; set; }
+}
