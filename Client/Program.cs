@@ -10,6 +10,7 @@ using CastleTours.Client.Services.StoreConfigService;
 using CastleTours.Client.Services.TicketOrderService;
 using CastleTours.Client.Services.TourService;
 using CastleTours.Client.Services.UserService;
+using MudBlazor.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -30,6 +31,7 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 
+builder.Services.AddMudServices();
 
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddBlazoredToast();
