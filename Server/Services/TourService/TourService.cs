@@ -16,7 +16,23 @@ namespace CastleTours.Server.Services.TourService
             _context = context;
         }
 
-        public async Task<List<Tour>> GetAllTours()
+        private async Task<List<Tour>> FindToursBySearchText(string searchText)
+        {
+            return await _context.Tours
+                .Where(t => t.Name.ToLower().Contains(searchText.ToLower())
+                || t.Description.Contains(searchText.ToLower())
+                || t.Castle.Name.Contains(searchText.ToLower())
+                || t.Castle.Location.Area.Contains(searchText.ToLower()))
+                .Include(t => t.Castle)
+                .Include(t => t.Castle.Location)
+                .Include(t => t.Addons)
+                .Include(t => t.Facilities)
+                .Include(t => t.OperatingTimes)
+                .Include(t => t.TourComments)
+                .ToListAsync();
+        }
+
+        private async Task<List<Tour>> GetAllTours()
         {
             return await _context.Tours
                 .Include(t => t.Castle)
@@ -46,11 +62,76 @@ namespace CastleTours.Server.Services.TourService
             return await _context.Tours.Where(t => t.CategoryId == category.Id).ToListAsync();
         }
 
-        public async Task<List<Tour>> SearchTours(string searchText)
+        public async Task<ServiceResponse<List<SearchResult>>> SearchTours(string searchText = null)
         {
-            return await _context.Tours
-                .Where(t => t.Name.Contains(searchText) || t.Description.Contains(searchText))
-                .ToListAsync();
+            ServiceResponse<List<Tour>> response;
+
+            if (searchText != null)
+            {
+                response = new ServiceResponse<List<Tour>>
+                {
+                    Data = await FindToursBySearchText(searchText)
+                };
+            }
+            else
+            {
+                response = new ServiceResponse<List<Tour>>
+                {
+                    Data = await GetAllTours()
+                };
+            }
+            
+            List<SearchResult> searchResults = new List<SearchResult>();
+
+            foreach (var i in response.Data)
+            {
+                var searchResult = new SearchResult()
+                {
+                    Id = i.Id,
+                    Title = i.Name,
+                    Rating = i.GetTourRating(),
+                    Blurb = i.Blurb,
+                    Location = i.Castle.Location.GetFormattedLocation(),
+                    ImgUrl = i.ImgUrl,
+                    Facilities = i.Facilities,
+                };
+
+                searchResults.Add(searchResult);
+            }
+
+            return new ServiceResponse<List<SearchResult>> { Data = searchResults };
+        }
+
+        public async Task<ServiceResponse<List<string>>> GetTourSearchSuggestions(string searchText)
+        {
+            var tours = await FindToursBySearchText(searchText);
+
+            List<string> result = new List<string>();
+
+            foreach (var tour in tours)
+            {
+                if (tour.Name.ToLower().Contains(searchText.ToLower()))
+                {
+                    result.Add(tour.Name);
+                }
+
+                if (tour.Castle.Name.ToLower().Contains(searchText.ToLower()))
+                {
+                    result.Add(tour.Castle.Name);
+                }
+
+                if (tour.Castle.Location.Area.ToLower().Contains(searchText.ToLower()))
+                {
+                    result.Add(tour.Castle.Location.Area);
+                }
+
+                if (tour.Description.ToLower().Contains(searchText.ToLower()))
+                {
+                    result.Add(tour.Description);
+                }
+            }
+
+            return new ServiceResponse<List<string>> { Data = result };
         }
 
         public async Task<FeaturedTour> GetFeaturedTour()
@@ -76,5 +157,6 @@ namespace CastleTours.Server.Services.TourService
 
             return featuredTour;
         }
+        
     }
 }

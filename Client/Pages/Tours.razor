@@ -18,7 +18,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        await TourService.LoadTours();
+        await TourService.SearchTours();
     }
 
     private void HandleOpenTour(int id)

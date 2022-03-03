@@ -9,46 +9,54 @@ namespace CastleTours.Client.Services.TourService
 
         public event Action OnChange;
 
-        public List<Tour> Tours { get; set; } = new List<Tour>();
+        public List<SearchResult> SearchResults { get; set; } = new List<SearchResult>();
+        public string Message { get; set; } = "Searching...";
+
         public TourService(HttpClient http)
         {
             _http = http;
         }
-        public async Task LoadTours(string categoryUrl)
+
+        //DEPRICATED - Use SearchTours(null) to get all tours.
+        /*public async Task LoadTours(string categoryUrl = null)
         {
-            if (categoryUrl == null)
-            {
-                Tours = await _http.GetFromJsonAsync<List<Tour>>($"api/Tour");
-            }
-        }
+            SearchResults = await _http.GetFromJsonAsync<List<Tour>>($"api/Tour");
+        }*/
 
         public async Task<Tour> GetTourById(int id)
         {
             return await _http.GetFromJsonAsync<Tour>($"api/Tour/{id}");
         }
 
-        public async Task<List<Tour>> SearchTours(string searchText)
+        public async Task SearchTours(string searchText = null)
         {
-            return await _http.GetFromJsonAsync<List<Tour>>($"api/tour/search/{searchText}");
+            if (searchText != null)
+            {
+                var result = await _http.GetFromJsonAsync<ServiceResponse<List<SearchResult>>>($"api/tour/search/{searchText}");
+                SearchResults = result.Data;
+            }
+            else
+            {
+                var result = await _http.GetFromJsonAsync<ServiceResponse<List<SearchResult>>>($"api/tour/loadAll");
+                SearchResults = result.Data;
+            }
+            
+            if (SearchResults == null || SearchResults.Count == 0)
+            {
+                Message = "No tours or experiences found.";
+            }
+            //OnChange.Invoke();
+        }
+
+        public async Task<List<string>> GetTourSearchSuggestions(string searchText)
+        {
+            var result = await _http.GetFromJsonAsync<ServiceResponse<List<string>>>($"api/tour/searchSuggestions/{searchText}");
+            return result.Data;
         }
 
         public async Task<FeaturedTour> GetFeaturedTour()
         {
             return await _http.GetFromJsonAsync<FeaturedTour>($"api/tour/featured");
         }
-
-
-        /*public async Task LoadTours(string categoryUrl = null)
-        {
-            if (categoryUrl == null)
-            {
-                Tours = await _http.GetFromJsonAsync<List<Tour>>($"api/Tour");
-            }
-            else
-            {
-                Tours = await _http.GetFromJsonAsync<List<Tour>>($"api/Tour/Category/{categoryUrl}");
-            }
-            OnChange.Invoke();
-        }*/
     }
 }

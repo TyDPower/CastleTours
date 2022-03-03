@@ -16,11 +16,12 @@ namespace CastleTours.Server.Controllers
             _tourService = tourService;
         }
 
-        [HttpGet]
+        //DEPRICATED - Use SearchTours(null) to get all tours.
+        /*[HttpGet]
         public async Task<ActionResult<List<Tour>>> GetAllTours()
         {
             return Ok(await _tourService.GetAllTours());
-        }
+        }*/
 
         [HttpGet("Category/{categoryUrl}")]
         public async Task<ActionResult<List<Tour>>> GetToursByCategory(string categoryUrl)
@@ -35,9 +36,22 @@ namespace CastleTours.Server.Controllers
         }
 
         [HttpGet("search/{searchText}")]
-        public async Task<ActionResult<List<Tour>>> SearchTours(string searchText)
+        public async Task<ActionResult<ServiceResponse<List<SearchResult>>>> SearchTours(string searchText)
         {
             return Ok(await _tourService.SearchTours(searchText));
+        }
+
+        [HttpGet("loadAll")]
+        public async Task<ActionResult<ServiceResponse<List<SearchResult>>>> SearchAllTours()
+        {
+            return Ok(await _tourService.SearchTours(null));
+        }
+
+        [HttpGet("searchSuggestions/{searchText}")]
+        public async Task<ActionResult<ServiceResponse<List<string>>>> GetTourSearchSuggestions(string searchText)
+        {
+            var result = await _tourService.GetTourSearchSuggestions(searchText);
+            return Ok(result);
         }
 
         [HttpGet("featured")]
