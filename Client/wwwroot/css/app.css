@@ -124,3 +124,7 @@ a, .btn-link {
         max-width: 100%;
     }
 }
+
+.hover-animate:hover, .hover-animate:focus {
+    transform: translate3d(0, -15px, 0) !important;
+}
