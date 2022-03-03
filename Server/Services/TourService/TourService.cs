@@ -142,6 +142,8 @@ namespace CastleTours.Server.Services.TourService
                 .ToListAsync();
             var tour = tours.Where(t => t.IsFeatured).FirstOrDefault();
 
+            string corporateBasePrice = (tour.Price * 10).ToString("0.00"); //Change the hard coded '10' to a variable loaded for a storeConfig file
+
             FeaturedTour featuredTour = new()
             {
                 TourId = tour.Id,
@@ -152,7 +154,7 @@ namespace CastleTours.Server.Services.TourService
                 TourRating = tour.GetTourRating(),
                 CastleId = tour.Castle.Id,
                 CastleName = tour.Castle.Name,
-                ExperaincesBasePrice = "0.00"           
+                CorporateBasePrice = corporateBasePrice
             };
 
             return featuredTour;
