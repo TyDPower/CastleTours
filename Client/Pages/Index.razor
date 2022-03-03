@@ -5,33 +5,16 @@
 
 <div>
     <FeaturedTourHero />
-    <AllToursExperiences />
+    <SearchToursExperiences />
 </div>
 
 
 @code {
-    [Parameter] public string CategoryUrl { get; set; }
-
-    private Category Category = null;
     private User User;
 
     protected override void OnInitialized()
     {
         User = new User();
         User = UserService.GetUserDetails();
-    }
-
-    protected override async Task OnParametersSetAsync()
-    {
-        await TourService.LoadTours(CategoryUrl);
-
-        if (CategoryUrl != null)
-        {
-            Category = CategoryService.Categories.FirstOrDefault(c => c.Url.ToLower().Equals(CategoryUrl.ToLower()));
-        }
-        else
-        {
-            Category = null;
-        }  
     }
 }
