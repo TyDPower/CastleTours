@@ -13,7 +13,8 @@ namespace CastleTours.Shared.Models
         public string MobileNumber { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Bio { get; set; }
+        public string Bio { get; set; } //Remove, unnecessary
+        public List<Favorite>? Favorites { get; set; }
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public bool RecieveNewsletters { get; set; } = false;
