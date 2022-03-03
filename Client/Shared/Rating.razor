@@ -1,0 +1,20 @@
+﻿<div>
+    @for (var i = 0; i < 5; i++)
+    {
+        if (RatingValue - count > 0)
+        {
+            <i class="fa fa-star text-warning"></i>
+            count++;
+        }
+        else
+        {
+            <i class="fa fa-star text-gray-300"></i>
+        }
+    }
+</div>
+
+
+@code {
+    [Parameter] public int RatingValue { get; set; }
+    int count = 0;
+}
