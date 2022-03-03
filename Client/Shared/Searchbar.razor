@@ -1,42 +1,52 @@
 ﻿@inject ITourService TourService
 @inject NavigationManager NavigationManager
 
-<div class="searchbar-container">
-    <BlazoredTypeahead  SearchMethod="@SearchTours"
-                        TValue="Tour"
-                        TItem="Tour"
-                        Value="SelectedTour"
-                        ValueChanged="HandleSearch"
-                        ValueExpression="@(()=> SelectedTour)"
-                        placeholder="Search...">
-
-        <SelectedTemplate>
-            @context.Name
-        </SelectedTemplate>
-        <ResultTemplate>
-            @context.Name
-        </ResultTemplate>
-        <NotFoundTemplate>
-            Sorry, no tours found...
-        </NotFoundTemplate>
-    </BlazoredTypeahead>
+<div class="input-group">
+    <input  @bind-value="searchText"
+            @bind-value:event="oninput" 
+            type="search"
+            list="tours"
+            @onkeyup="HandleSearch"
+            class="form-control"
+            placeholder="@PlaceholderText"
+            @ref="searchInput" />
+    <datalist id="tours">
+       @foreach (var suggestion in suggestions)
+       {
+           <option>@suggestion</option>
+       }
+    </datalist>
 </div>
 
 
 @code {
-    private Tour SelectedTour;
+    [Parameter] public string? PlaceholderText { get; set; }
+    private string searchText = string.Empty;
+    private List<string> suggestions = new List<string>();
+    protected ElementReference searchInput;
 
-    private void HandleSearch(Tour tour)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (tour == null) return;
-        SelectedTour = tour;
-        NavigationManager.NavigateTo($"tour/{SelectedTour.Id}");
+        if (firstRender)
+        {
+            await searchInput.FocusAsync();
+        }
     }
 
-    private async Task<IEnumerable<Tour>> SearchTours(string searchText)
+    public void SearchTours()
     {
-        var response = await TourService.SearchTours(searchText);
-        return response;
+        NavigationManager.NavigateTo($"/search/{searchText}");
     }
 
+    public async Task HandleSearch(KeyboardEventArgs args)
+    {
+        if (args.Key == null || args.Key.Equals("Enter"))
+        {
+            SearchTours();
+        }
+        else if (searchText.Length > 2)
+        {
+            suggestions = await TourService.GetTourSearchSuggestions(searchText);
+        }
+    }
 }
