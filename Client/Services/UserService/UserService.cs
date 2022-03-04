@@ -7,12 +7,13 @@ namespace CastleTours.Client.Services.UserService
     public class UserService : IUserService
     {
         private readonly HttpClient Http;
-        private User User { get; set; }
+        public User User { get; private set; } = new User();
 
         public UserService(HttpClient http)
         {
             Http = http;
         }
+
         public async Task GetUserDetailsFromDb()
         {
             User = new User();
