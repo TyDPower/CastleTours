@@ -1,0 +1,23 @@
+﻿<MudToggleIconButton @bind-Toggled="@IsFavorite"
+                     Icon="@Icons.Filled.FavoriteBorder" Color="@Color.Error" Title="Off"
+                     ToggledIcon="@Icons.Filled.Favorite" ToggledColor="@Color.Success" ToggledTitle="On"/>
+
+@code {
+    [Parameter] public int TourId { get; set; }
+    [Parameter] public List<Favorite> UserFavorites { get; set; } = null;
+
+    public bool IsFavorite { get; set; } = false;
+
+    protected override void OnParametersSet()
+    {
+        if (UserFavorites != null)
+        {
+            var favorite = UserFavorites.Where(f => f.TourId == TourId).FirstOrDefault();
+
+            if (favorite != null && favorite.TourId == TourId)
+            {
+                IsFavorite = true;
+            }
+        }
+    }
+}
