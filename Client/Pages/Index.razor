@@ -1,20 +1,17 @@
 ﻿@page "/"
-@inject ICategoryService CategoryService
 @inject ITourService TourService
 @inject IUserService UserService
 
 <div>
     <FeaturedTourHero />
-    <SearchToursExperiences WithFilter="false"/>
+    <SearchToursExperiences WithFilter="false"
+                            Tours="TourService.SearchResults"
+                            UserFavorites="UserService.User.Favorites"/>
 </div>
 
-
 @code {
-    private User User;
-
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        User = new User();
-        User = UserService.GetUserDetails();
+        await TourService.SearchTours();
     }
 }
