@@ -23,7 +23,9 @@ namespace CastleTours.Server.Controllers
         public async Task<IActionResult> GetUserDetails()
         {
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            var user = await Context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            var user = await Context.Users
+                .Include(u => u.Favorites)
+                .FirstOrDefaultAsync(u => u.Id == userId);
 
             return Ok(user);
         }
