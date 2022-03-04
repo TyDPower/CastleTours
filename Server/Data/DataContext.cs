@@ -27,7 +27,36 @@ namespace CastleTours.Server.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+            modelBuilder.Entity<Favorite>().HasData(
+                new Favorite()
+                {
+                    Id = 1,
+                    TourId = 1,
+                    UserId = 1,
+                    DateFavorited = DateTime.Now,
+                },
+                new Favorite()
+                {
+                    Id = 2,
+                    TourId = 5,
+                    UserId = 1,
+                    DateFavorited = DateTime.Now,
+                },
+                new Favorite()
+                {
+                    Id = 3,
+                    TourId = 6,
+                    UserId = 1,
+                    DateFavorited = DateTime.Now,
+                },
+                new Favorite()
+                {
+                    Id = 4,
+                    TourId = 9,
+                    UserId = 1,
+                    DateFavorited = DateTime.Now,
+                }
+            );
 
             modelBuilder.Entity<Category>().HasData(
                 new Category
