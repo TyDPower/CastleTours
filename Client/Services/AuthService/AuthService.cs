@@ -15,15 +15,13 @@ namespace CastleTours.Client.Services.AuthService
         public HttpClient Http { get; }
         public AuthenticationStateProvider AuthSateProvider { get; }
 
-        public bool UserAuthState { get; private set; }
-
-        public async Task GetUserAuthState()
+        public async Task<bool> GetUserAuthState()
         {
             var authState = await AuthSateProvider.GetAuthenticationStateAsync();
             var user = authState.User;
             bool isAuth = user.Identity.IsAuthenticated;
 
-            UserAuthState = isAuth;
+            return isAuth;
         }
 
         public async Task<ServiceResponse<string>> Login(UserLogin request)
