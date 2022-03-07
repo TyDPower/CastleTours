@@ -3,6 +3,7 @@
 @inject AuthenticationStateProvider AuthStateProvider
 @inject NavigationManager NavigationManager
 @inject ICartService CartService
+@inject ITourService TourService
 @implements IDisposable
 
 <header class="header custom-header-fixed">
@@ -81,6 +82,7 @@
     {
         await LocalStroageAsync.RemoveItemAsync("authToken");
         await AuthStateProvider.GetAuthenticationStateAsync();
-        NavigationManager.NavigateTo("/");
+
+        NavigationManager.NavigateTo("/", forceLoad: true); 
     }
 }
