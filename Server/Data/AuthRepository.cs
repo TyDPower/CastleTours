@@ -52,6 +52,43 @@ namespace CastleTours.Server.Data
             return new ServiceResponse<int> { Data = user.Id, Message = "Registration successful!" };
         }
 
+        public async Task<ServiceResponse<int>> AddFavorite(Favorite favorite)
+        {
+            if (await FavoriteExsists(favorite.TourId))
+                return new ServiceResponse<int> { Success = false, Message = "Favorite already exsist." };
+
+            _context.Favorites.Add(favorite);
+            await _context.SaveChangesAsync();
+
+            return new ServiceResponse<int> { Data = favorite.Id, Message = "Added successfully!" };
+        }
+
+        public async Task<ServiceResponse<int>> RemoveFavorite(int tourId)
+        {
+            if (tourId == null || tourId == 0)
+            {
+                return new ServiceResponse<int> { Data = tourId, Success = false, Message = "Tour Id not recieved!" };
+            }
+
+            var favorite = await _context.Favorites.Where(f => f.TourId == tourId).FirstOrDefaultAsync();
+            if (favorite == null)
+                return new ServiceResponse<int> { Data = tourId, Success = false, Message = "Favorite does not exsist." };
+
+            _context.Favorites.Remove(favorite);
+            await _context.SaveChangesAsync();
+            return new ServiceResponse<int> { Data = 0, Message = "Removed successfully!" };
+        }
+
+        public async Task<bool> FavoriteExsists(int tourId)
+        {
+            if (await _context.Favorites.AnyAsync(f => f.TourId == tourId))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public async Task<bool> UserExists(string email)
         {
             if (await _context.Users.AnyAsync(user => user.Email.ToLower().Equals(email.ToLower())))
@@ -110,5 +147,7 @@ namespace CastleTours.Server.Data
 
             return jwt;
         }
+
+        
     }
 }

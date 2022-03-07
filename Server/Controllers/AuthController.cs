@@ -42,6 +42,32 @@ namespace CastleTours.Server.Controllers
 
         }
 
+        [HttpPost("addFavorite")]
+        public async Task<IActionResult> AddFavorite(Favorite favorite)
+        {
+            var response = await _authRepo.AddFavorite(favorite);
+
+            if (!response.Success)
+            {
+                return BadRequest(response);
+            }
+
+            return Ok(response);
+        }
+
+        [HttpDelete("removeFavorite/{tourId}")]
+        public async Task<IActionResult> RemoveFavorite(int tourId)
+        {
+            var response = await _authRepo.RemoveFavorite(tourId);
+
+            if (!response.Success)
+            {
+                return BadRequest(response);
+            }
+
+            return Ok(response);
+        }
+
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserLogin request)
         {

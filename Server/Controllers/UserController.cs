@@ -1,4 +1,5 @@
 ﻿using CastleTours.Server.Data;
+using CastleTours.Shared.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,5 +30,26 @@ namespace CastleTours.Server.Controllers
 
             return Ok(user);
         }
+
+        [HttpGet("getUserFavorites")]
+        public async Task<IActionResult> GetUserFavorites()
+        {
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            var favorites = await Context.Favorites.Where(f => f.UserId == userId).ToListAsync();
+
+            return Ok(favorites);
+        }
+
+        [HttpGet("getUserFavoriteById/{tourId}")]
+        public async Task<IActionResult> GetUserFavorite(int tourId)
+        {
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            var favorite = await Context.Favorites.Where(f => f.TourId == tourId && f.UserId == userId)
+                .FirstOrDefaultAsync();
+
+            return Ok(favorite);
+        }
+
+        
     }
 }
