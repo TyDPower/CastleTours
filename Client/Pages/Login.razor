@@ -64,6 +64,7 @@
             await LocalStorage.SetItemAsync<string>("authToken", result.Data);
             await AuthStateProvider.GetAuthenticationStateAsync();
             NavigationManager.NavigateTo("/");
+            
         }
         else
         {
