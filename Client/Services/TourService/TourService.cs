@@ -45,7 +45,6 @@ namespace CastleTours.Client.Services.TourService
             {
                 Message = "No tours or experiences found.";
             }
-            //OnChange.Invoke();
         }
 
         public async Task<List<string>> GetTourSearchSuggestions(string searchText)
