@@ -1,0 +1,33 @@
+﻿@inject IUserService UserService
+
+<div>
+    @if (!IsFavorite)
+    {
+        <i class="fa-regular fa-heart"></i>
+    }
+    else
+    {
+        <i class="fa-solid fa-heart"></i>
+    }
+</div>
+
+
+@code {
+    [Parameter] public int TourId { get; set; }
+    [Parameter] public List<Favorite> UserFavorites { get; set; } = null;
+
+    public bool IsFavorite { get; set; } = false;
+
+    protected override void OnParametersSet()
+    {
+        if (UserFavorites != null)
+        {
+            var favorite = UserFavorites.Where(f => f.TourId == TourId).FirstOrDefault();
+
+            if (favorite != null && favorite.TourId == TourId)
+            {
+                IsFavorite = true;
+            }
+        }
+    }
+}
