@@ -1,16 +1,30 @@
 ﻿using CastleTours.Shared.Models;
+using Microsoft.AspNetCore.Components.Authorization;
 using System.Net.Http.Json;
 
 namespace CastleTours.Client.Services.AuthService
 {
     public class AuthService : IAuthService
     {
-        public AuthService(HttpClient http)
+        public AuthService(HttpClient http, AuthenticationStateProvider authSateProvider)
         {
             Http = http;
+            AuthSateProvider = authSateProvider;
         }
 
         public HttpClient Http { get; }
+        public AuthenticationStateProvider AuthSateProvider { get; }
+
+        public bool UserAuthState { get; private set; }
+
+        public async Task GetUserAuthState()
+        {
+            var authState = await AuthSateProvider.GetAuthenticationStateAsync();
+            var user = authState.User;
+            bool isAuth = user.Identity.IsAuthenticated;
+
+            UserAuthState = isAuth;
+        }
 
         public async Task<ServiceResponse<string>> Login(UserLogin request)
         {
