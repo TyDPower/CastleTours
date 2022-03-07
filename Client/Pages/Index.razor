@@ -6,17 +6,9 @@
 
 <div>
     <FeaturedTourHero />
-    <SearchToursExperiences WithFilter="false"
-                            UserAuthenticated="isAuth"/>
+    <SearchToursExperiences WithFilter="false"/>
 </div>
 
 @code {
-    bool isAuth = false;
 
-    protected override async Task OnInitializedAsync()
-    {
-        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
-        var user = authState.User;
-        isAuth = user.Identity.IsAuthenticated;
-    }
 }

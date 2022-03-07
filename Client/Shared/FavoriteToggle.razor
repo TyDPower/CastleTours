@@ -1,5 +1,6 @@
 ﻿@inject IUserService UserService
 @inject ITourService TourService
+@inject IAuthService AuthService
 
 <MudToggleIconButton    @bind-Toggled="@IsFavorite"
                         @onclick="HandleClick"
@@ -17,24 +18,38 @@
     [Parameter] public bool IsFavorite { get; set; }
     [Parameter] public int TourId { get; set; }
 
+    protected bool IsAuthorized = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        IsAuthorized = await AuthService.GetUserAuthState();
+    }
+
     private async Task HandleClick()
     {
-        if (IsFavorite)
+        if (IsAuthorized)
         {
-            await UserService.RemoveFavorite(TourId);
-            IsFavorite = false;
+            if (IsFavorite)
+            {
+                await UserService.RemoveFavorite(TourId);
+                IsFavorite = false;
+            }
+            else
+            {
+                Favorite newFavorite = new Favorite
+                {
+                    DateFavorited = DateTime.Now,
+                    TourId = TourId,
+                    UserId = UserService.User.Id
+                };
+
+                await UserService.AddFavorite(newFavorite);
+                IsFavorite = true;
+            }
         }
         else
         {
-            Favorite newFavorite = new Favorite
-            {
-                DateFavorited = DateTime.Now,
-                TourId = TourId,
-                UserId = UserService.User.Id
-            };
-
-            await UserService.AddFavorite(newFavorite);
-            IsFavorite = true;
+            
         }
     }
 }

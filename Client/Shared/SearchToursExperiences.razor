@@ -1,5 +1,6 @@
 ﻿@inject IUserService UserService
 @inject ITourService TourService
+@inject IAuthService AuthService
 
 <div class="container-fluid py-5 px-lg-5">
       <div class="row border-bottom mb-4">
@@ -211,7 +212,6 @@
 @code {
     [Parameter] public string? SearchText { get; set; } = null;
     [Parameter] public bool WithFilter { get; set; } = true;
-    [Parameter] public bool UserAuthenticated { get; set; }
 
     private List<Favorite>? UserFavorites { get; set; }
 
@@ -222,11 +222,12 @@
         if (!WithFilter) resultDisplaySize = "col-lg-12";
     }
 
-    protected override async Task OnParametersSetAsync()
+    protected override async Task OnInitializedAsync()
     {
         await TourService.SearchTours(SearchText);
+        var IsAuthorized = await AuthService.GetUserAuthState();
 
-        if (UserAuthenticated)
+        if (IsAuthorized)
         {
             UserFavorites = await UserService.GetUserFavorites();
         }
