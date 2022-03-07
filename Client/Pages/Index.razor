@@ -1,17 +1,22 @@
 ﻿@page "/"
 @inject ITourService TourService
 @inject IUserService UserService
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@using System.Security.Claims
 
 <div>
     <FeaturedTourHero />
     <SearchToursExperiences WithFilter="false"
-                            Tours="TourService.SearchResults"
-                            UserFavorites="UserService.User.Favorites"/>
+                            UserAuthenticated="isAuth"/>
 </div>
 
 @code {
+    bool isAuth = false;
+
     protected override async Task OnInitializedAsync()
     {
-        await TourService.SearchTours();
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+        isAuth = user.Identity.IsAuthenticated;
     }
 }

@@ -1,23 +1,40 @@
-﻿<MudToggleIconButton @bind-Toggled="@IsFavorite"
-                     Icon="@Icons.Filled.FavoriteBorder" Color="@Color.Error" Title="Off"
-                     ToggledIcon="@Icons.Filled.Favorite" ToggledColor="@Color.Success" ToggledTitle="On"/>
+﻿@inject IUserService UserService
+@inject ITourService TourService
+
+<MudToggleIconButton    @bind-Toggled="@IsFavorite"
+                        @onclick="HandleClick"
+                        Icon="@Icons.Filled.FavoriteBorder"
+                        Color="@Color.Error"
+                        Title="Off"
+                        ToggledIcon="@Icons.Filled.Favorite"
+                        ToggledColor="@Color.Success"
+                        ToggledTitle="On"/>
+
+
 
 @code {
+
+    [Parameter] public bool IsFavorite { get; set; }
     [Parameter] public int TourId { get; set; }
-    [Parameter] public List<Favorite> UserFavorites { get; set; } = null;
 
-    public bool IsFavorite { get; set; } = false;
-
-    protected override void OnParametersSet()
+    private async Task HandleClick()
     {
-        if (UserFavorites != null)
+        if (IsFavorite)
         {
-            var favorite = UserFavorites.Where(f => f.TourId == TourId).FirstOrDefault();
-
-            if (favorite != null && favorite.TourId == TourId)
+            await UserService.RemoveFavorite(TourId);
+            IsFavorite = false;
+        }
+        else
+        {
+            Favorite newFavorite = new Favorite
             {
-                IsFavorite = true;
-            }
+                DateFavorited = DateTime.Now,
+                TourId = TourId,
+                UserId = UserService.User.Id
+            };
+
+            await UserService.AddFavorite(newFavorite);
+            IsFavorite = true;
         }
     }
 }
