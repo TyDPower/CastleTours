@@ -1,6 +1,7 @@
 ﻿@inject IUserService UserService
 @inject ITourService TourService
 @inject IAuthService AuthService
+@inject NavigationManager NavigationManager
 
 <div class="container-fluid py-5 px-lg-5">
       <div class="row border-bottom mb-4">
@@ -158,7 +159,7 @@
              @foreach (var i in TourService.SearchResults)
              {
                 <!-- tour item-->
-                <div class="col-sm-6 col-xl-3 mb-5 hover-animate tour-item">
+                <div typeof="button" class="col-sm-6 col-xl-3 mb-5 hover-animate tour-item z-index-20 " @onclick="(()=> HandleTourSelect(i.Id))">
                   <div class="card h-100 border-0 shadow">
                     <div class="card-img-top overflow-hidden dark-overlay bg-cover" style="background-image: url(@i.ImgUrl); min-height: 200px;">
                       <div class="card-img-overlay-bottom z-index-20">
@@ -168,10 +169,10 @@
                         </p>
                       </div>
                       <div class="card-img-overlay-top d-flex justify-content-between align-items-center">
-                        <div class="card-fav-icon position-relative z-index-40"> 
+                        <div class="card-fav-icon z-index-40"> 
                             <FavoriteToggle IsFavorite="IsTourFavorite(i.Id)"
-                                            TourId="i.Id"/>
-                         </div>
+                                            TourId="i.Id" />
+                        </div>
                       </div>
                     </div>
                     <div class="card-body">
@@ -207,7 +208,8 @@
           </nav>
         </div>
       </div>
-    </div>
+</div>
+
 
 @code {
     [Parameter] public string? SearchText { get; set; } = null;
@@ -252,6 +254,11 @@
         }
 
         return false;
+    }
+
+    private void HandleTourSelect(int id)
+    {
+        NavigationManager.NavigateTo($"./tour/{id}");
     }
 }
 
