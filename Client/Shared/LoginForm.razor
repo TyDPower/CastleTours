@@ -1,16 +1,19 @@
-﻿@page "/login"
-@inject ILocalStorageService LocalStorage
+﻿@inject ILocalStorageService LocalStorage
 @inject NavigationManager NavigationManager
 @inject AuthenticationStateProvider AuthStateProvider
 @inject IAuthService AuthService
 @inject IToastService ToastService
+@inject IDialogServiceCustom DialogServiceCustom
 
 <div class="container-fluid px-3">
-    <div class="row min-vh-100">
-        <div class="col-md-8 col-lg-6 col-xl-5 d-flex align-items-center">
+    <div class="row min-vh-50">
+        <div class="col-12 d-flex align-items-center">
             <div class="w-100 py-5 px-md-5 px-xxl-6 position-relative">
-                <div class="mb-5"><img class="img-fluid mb-3" src="img/logo-square.svg" alt="..." style="max-width: 4rem;">
-                  <h2>Welcome back</h2>
+                <div class="mb-5">
+                    <h1>
+                        <i class="fa-brands fa-fort-awesome"></i> &nbsp; Castle Tours 
+                    </h1>
+                    <h6>Welcome back</h6>
                 </div>
                 <EditForm Model="user" OnValidSubmit="HandleLogin">
                     <DataAnnotationsValidator></DataAnnotationsValidator>
@@ -28,10 +31,13 @@
                         <InputText id="password" @bind-Value="user.Password" class="form-control " type="password"/>
                     </div>
                     <div class="mb-4">
-                        <div class="form-check">
-                            <input class="form-check-input" id="loginRemember" type="checkbox">
-                            <label class="form-check-label text-muted" for="loginRemember"> <span class="text-sm">Remember me for 30 days</span></label>
-                        </div>
+                        <span class="link-primary" @onclick="OnReg">Not registered?</span>
+                        <!--
+                            <div class="form-check">
+                                <input class="form-check-input" id="loginRemember" type="checkbox">
+                                <label class="form-check-label text-muted" for="loginRemember"> <span class="text-sm">Remember me for 30 days</span></label>
+                            </div>
+                        -->
                     </div>
                     <br/>
                     <div class="d-grid">
@@ -43,18 +49,13 @@
                 </EditForm>
             </div>
         </div>
-        <div class="col-md-4 col-lg-6 col-xl-7 d-none d-md-block">
-            <div class="bg-cover h-100 me-n3" style="background-image: url(./img/stockImgs/castleRuins1.jpg);"></div>
-        </div>
-
     </div>
 </div>
 
-<LastMinuteDeals />
-
 @code {
-
     private UserLogin user = new UserLogin();
+
+    [Parameter] public EventCallback OnReg { get; set; }
 
     private async Task HandleLogin()
     {
@@ -63,8 +64,8 @@
         {
             await LocalStorage.SetItemAsync<string>("authToken", result.Data);
             await AuthStateProvider.GetAuthenticationStateAsync();
-            NavigationManager.NavigateTo("/");
-            
+            NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad:true);
+            DialogServiceCustom.CloseDialog();
         }
         else
         {
@@ -72,3 +73,4 @@
         }
     }
 }
+
