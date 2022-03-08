@@ -1,17 +1,16 @@
 ﻿@inject IUserService UserService
 @inject ITourService TourService
 @inject IAuthService AuthService
+@inject IDialogServiceCustom DialogServiceCustom
 
 <MudToggleIconButton    @bind-Toggled="@IsFavorite"
                         @onclick="HandleClick"
                         Icon="@Icons.Filled.FavoriteBorder"
                         Color="@Color.Error"
-                        Title="Off"
+                        Title="Favorite?"
                         ToggledIcon="@Icons.Filled.Favorite"
                         ToggledColor="@Color.Success"
-                        ToggledTitle="On"/>
-
-
+                        ToggledTitle="Favorite!"/>
 
 @code {
 
@@ -49,7 +48,7 @@
         }
         else
         {
-            
+            DialogServiceCustom.SignInDialog();
         }
     }
 }
