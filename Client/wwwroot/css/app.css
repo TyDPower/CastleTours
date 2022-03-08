@@ -128,3 +128,17 @@ a, .btn-link {
 .hover-animate:hover, .hover-animate:focus {
     transform: translate3d(0, -15px, 0) !important;
 }
+
+.blazored-toast-container {
+    z-index: 2000 !important;
+}
+
+.mud-icon-button {
+    padding: 6px !important;
+    background-color: white !important;
+}
+
+.mud-icon-size-medium {
+    font-size: 1.9rem !important;
+    color: darkred !important;
+}
