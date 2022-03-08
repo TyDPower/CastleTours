@@ -1,0 +1,36 @@
+﻿@inject IDialogServiceCustom DialogServiceCustom
+
+<div class="modal" tabindex="-1" style="display:inline!important">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">@DialogHeading()</h5>
+        <button type="button" class="btn-close" @onclick="OnClose"></button>
+      </div>
+      <div class="modal-body">
+          @if (DialogServiceCustom.DialogState == "login")
+          {
+              <LoginForm OnReg="DialogServiceCustom.RegistrationDialog"/>
+          }
+          else if (DialogServiceCustom.DialogState == "registration")
+          {
+              <RegistrationForm />
+          }
+      </div>
+    </div>
+  </div>
+</div>
+
+@code {
+
+    private string DialogHeading()
+    {
+        if (DialogServiceCustom.DialogState == "login") return "Please sign in";
+        else return "Please register";
+    }
+
+    private void OnClose()
+    {
+        DialogServiceCustom.CloseDialog();
+    }
+}
