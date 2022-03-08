@@ -4,6 +4,7 @@
 @inject NavigationManager NavigationManager
 @inject ICartService CartService
 @inject ITourService TourService
+@inject IDialogServiceCustom DialogServiceCustom
 @implements IDisposable
 
 <header class="header custom-header-fixed">
@@ -21,8 +22,8 @@
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item position-static">
-                  <a class="nav-link" href="./accounts/user/wishlist">
-                      <i class="fa-solid fa-heart"></i> &nbsp;Wishlist
+                  <a class="nav-link" href="./favorites">
+                      <i class="fa-solid fa-heart"></i> &nbsp;Favorites
                   </a>
               </li>
               <li class="nav-item">
@@ -44,13 +45,13 @@
                       </li>
                   </Authorized>
                   <NotAuthorized>
-                      <li class="nav-item">
-                          <a class="nav-link" href="./login">
+                      <li class="nav-item nav-link-item">
+                          <span typeof="button" class="nav-link" @onclick="(() => DialogServiceCustom.SignInDialog())">
                               <i class="fa-solid fa-arrow-right-to-bracket"></i> &nbsp;Sign in
-                          </a>
+                          </span>
                       </li>
                       <li class="nav-item mt-3 mt-lg-0 ms-lg-3 d-lg-none d-xl-inline-block">
-                          <a class="btn btn-primary" href="./registration">Sign up</a>
+                          <span class="btn btn-primary" @onclick="(() => DialogServiceCustom.RegistrationDialog())">Sign up</span>
                       </li>
                   </NotAuthorized>
               </AuthorizeView>
@@ -61,16 +62,12 @@
     </nav>
 </header>
 
-@code {
-    protected override void OnInitialized()
-    {
-        CartService.OnChange += StateHasChanged;
-    }
+@if (DialogServiceCustom.IsDialogShowing)
+{
+    <LoginDialog />
+}
 
-    public void Dispose()
-    {
-        CartService.OnChange -= StateHasChanged;
-    }
+@code {
 
     protected string GetTicketCount()
     {
@@ -85,4 +82,15 @@
 
         NavigationManager.NavigateTo("/", forceLoad: true); 
     }
+
+    protected override void OnInitialized()
+    {
+        DialogServiceCustom.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        DialogServiceCustom.OnChange -= StateHasChanged;
+    }
+
 }
