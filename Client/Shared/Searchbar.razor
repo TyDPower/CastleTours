@@ -2,7 +2,7 @@
 @inject NavigationManager NavigationManager
 
 <div class="input-group">
-    <input  @bind-value="searchText"
+    <input  @bind-value="TourService.LastSearchText"
             @bind-value:event="oninput" 
             type="search"
             list="tours"
@@ -21,7 +21,6 @@
 
 @code {
     [Parameter] public string? PlaceholderText { get; set; }
-    private string searchText = string.Empty;
     private List<string> suggestions = new List<string>();
     protected ElementReference searchInput;
 
@@ -35,7 +34,7 @@
 
     public void SearchTours()
     {
-        NavigationManager.NavigateTo($"/search/{searchText}");
+        NavigationManager.NavigateTo($"/search");
     }
 
     public async Task HandleSearch(KeyboardEventArgs args)
@@ -44,9 +43,9 @@
         {
             SearchTours();
         }
-        else if (searchText.Length > 2)
+        else if (TourService.LastSearchText.Length > 2)
         {
-            suggestions = await TourService.GetTourSearchSuggestions(searchText);
+            suggestions = await TourService.GetTourSearchSuggestions(TourService.LastSearchText);
         }
     }
 }
