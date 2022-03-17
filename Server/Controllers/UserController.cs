@@ -21,18 +21,20 @@ namespace CastleTours.Server.Controllers
         public DataContext Context { get; }
 
         [HttpGet("getuserdetails")]
-        public async Task<IActionResult> GetUserDetails()
+        public async Task<ActionResult<User>> GetUserDetails()
         {
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
             var user = await Context.Users
                 .Include(u => u.Favorites)
                 .FirstOrDefaultAsync(u => u.Id == userId);
 
+            if (user == null) return NotFound();
+
             return Ok(user);
         }
 
         [HttpGet("getUserFavorites")]
-        public async Task<IActionResult> GetUserFavorites()
+        public async Task<ActionResult<Favorite>> GetUserFavorites()
         {
             var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
             var favorites = await Context.Favorites.Where(f => f.UserId == userId).ToListAsync();
