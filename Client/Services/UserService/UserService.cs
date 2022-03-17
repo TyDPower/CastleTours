@@ -34,9 +34,9 @@ namespace CastleTours.Client.Services.UserService
             return Favorites;
         }
 
-        public async Task<Favorite> GetUserFavorite(int tourId)
+        public async Task<Favorite> GetFavoriteById(int tourId)
         {
-            var Favorite = await Http.GetFromJsonAsync<Favorite>($"api/user/getUserFavorites/{tourId}");
+            var Favorite = await Http.GetFromJsonAsync<Favorite>($"api/user/getuserfavoritebyid/{tourId}");
             return Favorite;
         }
 

@@ -9,7 +9,7 @@ namespace CastleTours.Client.Services.UserService
         Task GetUserDetailsFromDb();
         User GetUserDetails();
         Task<List<Favorite>> GetUserFavorites();
-        Task<Favorite> GetUserFavorite(int tourId);
+        Task<Favorite> GetFavoriteById(int tourId);
         Task<ServiceResponse<int>> AddFavorite(Favorite favorite);
         Task<ServiceResponse<int>> RemoveFavorite(int tourId);
     }
