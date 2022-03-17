@@ -1,4 +1,5 @@
 ﻿using CastleTours.Shared.Models;
+using CastleTours.Shared.DTOModels;
 using System.Net.Http.Json;
 
 namespace CastleTours.Client.Services.TourService
@@ -10,6 +11,9 @@ namespace CastleTours.Client.Services.TourService
         public event Action OnChange;
 
         public List<SearchResult> SearchResults { get; set; } = new List<SearchResult>();
+        public int CurrentPage { get; set; } = 1;
+        public int PageCount { get; set; } = 0;
+        public string LastSearchText { get; set; }
         public string Message { get; set; } = "Searching...";
 
         public TourService(HttpClient http)
@@ -28,23 +32,22 @@ namespace CastleTours.Client.Services.TourService
             return await _http.GetFromJsonAsync<Tour>($"api/Tour/{id}");
         }
 
-        public async Task SearchTours(string searchText = null)
+        public async Task SearchTours(int page, string searchText)
         {
+            LastSearchText = searchText;
             if (searchText != null)
             {
-                var result = await _http.GetFromJsonAsync<ServiceResponse<List<SearchResult>>>($"api/tour/search/{searchText}");
-                SearchResults = result.Data;
-            }
-            else
-            {
-                var result = await _http.GetFromJsonAsync<ServiceResponse<List<SearchResult>>>($"api/tour/loadAll");
-                SearchResults = result.Data;
+                var results = await _http.GetFromJsonAsync<ServiceResponse<TourSearchResult>>($"api/tour/search/new/{searchText}/{page}");
+                SearchResults = results.Data.SearchResults;
+                CurrentPage = results.Data.CurrentPage;
+                PageCount = results.Data.Pages;
             }
             
             if (SearchResults == null || SearchResults.Count == 0)
             {
                 Message = "No tours or experiences found.";
             }
+            OnChange.Invoke();
         }
 
         public async Task<List<string>> GetTourSearchSuggestions(string searchText)
