@@ -1,5 +1,6 @@
 ﻿using CastleTours.Server.Services.TourService;
 using CastleTours.Shared.Models;
+using CastleTours.Shared.DTOModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,6 +40,12 @@ namespace CastleTours.Server.Controllers
         public async Task<ActionResult<ServiceResponse<List<SearchResult>>>> SearchTours(string searchText)
         {
             return Ok(await _tourService.SearchTours(searchText));
+        }
+
+        [HttpGet("search/new/{searchText}/{page}")]
+        public async Task<ActionResult<ServiceResponse<TourSearchResult>>> SearchAllTours(int page = 1, string searchText = "castles")
+        {
+            return Ok(await _tourService.TourSearchResults(page, searchText));
         }
 
         [HttpGet("loadAll")]
