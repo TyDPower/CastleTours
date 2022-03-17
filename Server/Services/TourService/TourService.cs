@@ -1,5 +1,6 @@
 ﻿using CastleTours.Server.Data;
 using CastleTours.Server.Services.CategoryService;
+using CastleTours.Shared.DTOModels;
 using CastleTours.Shared.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -159,6 +160,58 @@ namespace CastleTours.Server.Services.TourService
 
             return featuredTour;
         }
-        
+
+        public async Task<ServiceResponse<TourSearchResult>> TourSearchResults(int page, string searchText)
+        {
+            var pageResults = 8f;
+            var pageCount = Math.Ceiling((await FindToursBySearchText(searchText)).Count / pageResults);
+            List<SearchResult> searchResults = new List<SearchResult>();
+            List<Tour> searchTours = await GetAllTourWithPagination(page, searchText, pageResults);
+
+            foreach (var i in searchTours)
+            {
+                var searchResult = new SearchResult()
+                {
+                    Id = i.Id,
+                    Title = i.Name,
+                    Rating = i.GetTourRating(),
+                    Blurb = i.Blurb,
+                    Location = i.Castle.Location.GetFormattedLocation("displayLocation"),
+                    ImgUrl = i.ImgUrl,
+                    Facilities = i.Facilities,
+                };
+                searchResults.Add(searchResult);
+            }
+
+            var response = new ServiceResponse<TourSearchResult>
+            {
+                Data = new TourSearchResult
+                {
+                    SearchResults = searchResults,
+                    CurrentPage = page,
+                    Pages = (int)pageCount
+                }
+            };
+
+            return response;
+        }
+
+        private async Task<List<Tour>> GetAllTourWithPagination(int page, string searchText, float pageResults)
+        {
+            return await _context.Tours
+                                            .Where(t => t.Name.ToLower().Contains(searchText.ToLower())
+                                            || t.Description.Contains(searchText.ToLower())
+                                            || t.Castle.Name.Contains(searchText.ToLower())
+                                            || t.Castle.Location.Area.Contains(searchText.ToLower()))
+                                            .Include(t => t.Castle)
+                                            .Include(t => t.Castle.Location)
+                                            .Include(t => t.Addons)
+                                            .Include(t => t.Facilities)
+                                            .Include(t => t.OperatingTimes)
+                                            .Include(t => t.TourComments)
+                                            .Skip((page - 1) * (int)pageResults)
+                                            .Take((int)pageResults)
+                                            .ToListAsync();
+        }
     }
 }
