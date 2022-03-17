@@ -1,12 +1,17 @@
-﻿@inject IUserService UserService
+﻿@inject NavigationManager NavigationManager
+@inject IUserService UserService
 @inject ITourService TourService
 @inject IAuthService AuthService
-@inject NavigationManager NavigationManager
+@inject ICategoryService CategoryService
+@inject ISearchService SearchService
+@inject IFacilityService FacilityService
+@inject IDialogServiceCustom DialogServiceCustom
+@implements IDisposable
 
 <div class="container-fluid py-5 px-lg-5">
       <div class="row border-bottom mb-4">
         <div class="col-12">
-          <h1 class="display-4 fw-bold text-serif mb-4">Eat in Manhattan, NY</h1>
+          <h1 class="display-4 fw-bold text-serif mb-4">Your adventure awaits...</h1>
         </div>
       </div>
       <div class="row">
@@ -14,112 +19,48 @@
           {
               <div class="col-lg-3 pt-3">
                   <form class="pe-xl-3" action="#">
-                    <div class="mb-4">
+                    @*<div class="mb-4">
                       <label class="form-label" for="form_search">Keyword</label>
                       <div class="input-label-absolute input-label-absolute-right">
                         <div class="label-absolute"><i class="fa fa-search"></i></div>
                         <input class="form-control pe-4" type="search" name="search" placeholder="Keywords" id="form_search">
                       </div>
-                    </div>
+                    </div>*@
                     <div class="mb-4">
-                      <label class="form-label" for="form_neighbourhood">Neighbourhood</label>
+                      <label class="form-label" for="form_neighbourhood">Area</label>
                       <select class="form-control">
-                        <option value="neighbourhood_0">Battery Park City    </option>
-                        <option value="neighbourhood_1">Bowery    </option>
-                        <option value="neighbourhood_2">Carnegie Hill    </option>
-                        <option value="neighbourhood_3">Central Park    </option>
-                        <option value="neighbourhood_4">Chelsea    </option>
-                        <option value="neighbourhood_5">Chinatown    </option>
-                        <option value="neighbourhood_6">Civic Center    </option>
-                        <option value="neighbourhood_7">East Harlem    </option>
-                        <option value="neighbourhood_8">Financial District    </option>
-                        <option value="neighbourhood_9">Flatiron    </option>
-                        <option value="neighbourhood_10">Garment District    </option>
-                        <option value="neighbourhood_11">Gramercy Park    </option>
-                        <option value="neighbourhood_12">Greenwich Village    </option>
-                        <option value="neighbourhood_13">East Village    </option>
-                        <option value="neighbourhood_14">West Village    </option>
-                        <option value="neighbourhood_15">Hamilton Heights    </option>
-                        <option value="neighbourhood_16">Harlem    </option>
-                        <option value="neighbourhood_17">Hell's Kitchen / Clinton    </option>
-                        <option value="neighbourhood_18">Inwood    </option>
-                        <option value="neighbourhood_19">Kips Bay    </option>
-                        <option value="neighbourhood_20">Lenox Hill    </option>
-                        <option value="neighbourhood_21">Little Italy    </option>
-                        <option value="neighbourhood_22">Lower Eastside    </option>
-                        <option value="neighbourhood_23">Madison Square    </option>
-                        <option value="neighbourhood_24">Manhattan Valley    </option>
-                        <option value="neighbourhood_25">Meatpacking District    </option>
-                        <option value="neighbourhood_26">Midtown    </option>
-                        <option value="neighbourhood_27">Morningside Heights    </option>
-                        <option value="neighbourhood_28">Murray Hill    </option>
-                        <option value="neighbourhood_29">NoHo    </option>
-                        <option value="neighbourhood_30">NoLita    </option>
-                        <option value="neighbourhood_31">Roosevelt Island    </option>
-                        <option value="neighbourhood_32">SoHo    </option>
-                        <option value="neighbourhood_33">Stuyvesant Town (Stuyvesant Square)    </option>
-                        <option value="neighbourhood_34">Sutton Place    </option>
-                        <option value="neighbourhood_35">Times Square    </option>
-                        <option value="neighbourhood_36">Tribeca    </option>
-                        <option value="neighbourhood_37">Turtle Bay    </option>
-                        <option value="neighbourhood_38">Upper Eastside    </option>
-                        <option value="neighbourhood_39">Upper Westside    </option>
-                        <option value="neighbourhood_40">Washington Heights    </option>
-                        <option value="neighbourhood_41">Yorkville    </option>
+                        <option value="neighbourhood_0">Select an area</option>
+                        @foreach (var area in SearchService.LocationAreas)
+                        {
+                            <option id="@area">@area</option>
+                        }
                       </select>
                     </div>
                     <div class="mb-4">
                       <label class="form-label" for="form_category">Category</label>
                       <select class="form-control">
-                        <option value="category_0">Hipster    </option>
-                        <option value="category_1">Music club    </option>
-                        <option value="category_2">Bar    </option>
-                        <option value="category_3">Pub    </option>
-                        <option value="category_4">Deli    </option>
-                        <option value="category_5">Bistro    </option>
+                        <option>Select a category</option>
+                        @foreach (var category in SearchService.CategoryNames)
+                        {
+                            <option id="@category">@category</option>
+                        }
                       </select>
                     </div>
                     <div class="pb-4">
                       <div class="collapse" id="moreFilters">
                         <div class="mb-4">
-                          <label class="form-label">Cuisine</label>
+                          <label class="form-label">Facilities</label>
                           <ul class="list-unstyled mb-0">
-                            <li>
-                              <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="cuisine_0" name="cuisine[]">
-                                <label class="form-check-label" for="cuisine_0">Fusion</label>
-                              </div>
-                            </li>
-                            <li>
-                              <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="cuisine_1" name="cuisine[]">
-                                <label class="form-check-label" for="cuisine_1">Indian</label>
-                              </div>
-                            </li>
-                            <li>
-                              <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="cuisine_2" name="cuisine[]">
-                                <label class="form-check-label" for="cuisine_2">French</label>
-                              </div>
-                            </li>
-                            <li>
-                              <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="cuisine_3" name="cuisine[]">
-                                <label class="form-check-label" for="cuisine_3">American</label>
-                              </div>
-                            </li>
-                            <li>
-                              <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="cuisine_4" name="cuisine[]">
-                                <label class="form-check-label" for="cuisine_4">Mexican</label>
-                              </div>
-                            </li>
-                            <li>
-                              <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="cuisine_5" name="cuisine[]">
-                                <label class="form-check-label" for="cuisine_5">Other</label>
-                              </div>
-                            </li>
+                              @foreach (var facility in SearchService.FacilityTypes)
+                              {
+
+                                  <li>
+                                      <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" id="@facility" name="@facility">
+                                          <label class="form-check-label" for="@facility">@facility</label>
+                                      </div>
+                                  </li>
+                              }
                           </ul>
                         </div>
                       </div>
@@ -156,38 +97,59 @@
           }
           <!-- tour items -->
           <div class="row">
-             @foreach (var i in TourService.SearchResults)
+             @foreach (var result in TourService.SearchResults)
              {
                 <!-- tour item-->
-                <div typeof="button" class="col-sm-6 col-xl-3 mb-5 hover-animate tour-item z-index-20 " @onclick="(()=> HandleTourSelect(i.Id))">
+                <div typeof="button" class="col-sm-6 col-xl-3 mb-5 hover-animate tour-item z-index-20 " @onclick="(()=> HandleTourSelect(result.Id))">
                   <div class="card h-100 border-0 shadow">
-                    <div class="card-img-top overflow-hidden dark-overlay bg-cover" style="background-image: url(@i.ImgUrl); min-height: 200px;">
+                    <div class="card-img-top overflow-hidden dark-overlay bg-cover" style="background-image: url(@result.ImgUrl); min-height: 200px;">
                       <div class="card-img-overlay-bottom z-index-20">
-                        <h4 class="text-white text-shadow">@i.Title</h4>
+                        <h4 class="text-white text-shadow">@result.Title</h4>
                         <p class="mb-2 text-xs">
-                            <Rating RatingValue="@i.Rating"/>
+                            <div>
+                                @if (result.Rating >= 0)
+                                {
+                                    var count = 0;
+                                    @for (var i = 0; i < 5; i++)
+                                    {
+                                        if (result.Rating - count > 0)
+                                        {
+                                            <span>
+                                                <i class="fa fa-star text-warning"></i>
+                                            </span>
+                                            count++;
+                                        }
+                                        else
+                                        {
+                                            <span>
+                                                <i class="fa fa-star text-gray-300"></i>
+                                            </span>
+                                        }
+                                    }
+                                }
+                            </div>
                         </p>
                       </div>
                       <div class="card-img-overlay-top d-flex justify-content-between align-items-center">
                         <div class="card-fav-icon z-index-40"> 
-                            <FavoriteToggle IsFavorite="IsTourFavorite(i.Id)"
-                                            TourId="i.Id" />
+                            <FavoriteToggle IsFavorite="result.IsFavorite"
+                                            TourId="result.Id" />
                         </div>
                       </div>
                     </div>
                     <div class="card-body">
-                      <p class="text-sm text-muted mb-3">@i.Blurb</p>
-                      <p class="text-sm text-muted text-uppercase mb-1"><span class="text-dark">@i.Location</span></p>
+                      <p class="text-sm text-muted mb-3">@result.Blurb</p>
+                      <p class="text-sm text-muted text-uppercase mb-1"><span class="text-dark">@result.Location</span></p>
                       <p class="text-sm mb-0">
-                          @foreach (var f in i.Facilities)
+                          @foreach (var facility in result.Facilities)
                           {
-                              if (f == i.Facilities[i.Facilities.Count() - 1])
+                              if (facility == result.Facilities[result.Facilities.Count() - 1])
                               {
-                                  <span class="me-1"><span class="@f.Icon"></span> @f.Type </span>
+                                  <span class="me-1"><span class="@facility.Icon"></span> @facility.Type </span>
                               }
                               else
                               {
-                                  <span class="me-1"><span class="@f.Icon"></span> @f.Type | </span>
+                                  <span class="me-1"><span class="@facility.Icon"></span> @facility.Type | </span>
                               }
                           }
                       </p>
@@ -198,13 +160,15 @@
           </div>
           <!-- Pagination -->
           <nav aria-label="Page navigation example">
-            <ul class="pagination pagination-template d-flex justify-content-center">
-              <li class="page-item"><a class="page-link" href="#"> <i class="fa fa-angle-left"></i></a></li>
-              <li class="page-item active"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#"> <i class="fa fa-angle-right"></i></a></li>
-            </ul>
+            <div class="pagination pagination-template d-flex justify-content-center">
+                @for (int i=1; i<=TourService.PageCount; i++)
+                {
+                    int paginationIndex = i;
+                    <span class="btn page-selection @(i == TourService.CurrentPage ? "btn-info" : "btn-outline-info")" @onclick="() => GetToursWithPaginantion(paginationIndex, SearchText)">
+                        @i
+                    </span>
+                }
+            </div>
           </nav>
         </div>
       </div>
@@ -212,48 +176,51 @@
 
 
 @code {
-    [Parameter] public string? SearchText { get; set; } = null;
+    [Parameter] public string? SearchText { get; set; } = "castle";
     [Parameter] public bool WithFilter { get; set; } = true;
-
-    private List<Favorite>? UserFavorites { get; set; }
 
     private string resultDisplaySize = "col-lg-9";
 
     protected override void OnInitialized()
     {
         if (!WithFilter) resultDisplaySize = "col-lg-12";
+        TourService.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        TourService.OnChange -= StateHasChanged;
     }
 
     protected override async Task OnInitializedAsync()
     {
-        await TourService.SearchTours(SearchText);
+        await GetToursWithPaginantion(1, SearchText);
+
+        if (WithFilter)
+        {
+            await SearchService.LoadCategories("names");
+            await SearchService.LoadFacilities("types");
+            await SearchService.LoadLocations("areas");
+        }
+
+    }
+
+    private async Task GetToursWithPaginantion(int paginationIndex, string searchText)
+    {
+        await TourService.SearchTours(paginationIndex, searchText);
         var IsAuthorized = await AuthService.GetUserAuthState();
 
         if (IsAuthorized)
         {
-            UserFavorites = await UserService.GetUserFavorites();
-        }
-        else
-        {
-            UserFavorites = null;
-        }
-    }
-
-    private bool IsTourFavorite(int tourId)
-    {
-        if (UserFavorites != null)
-        {
-            var favorite = UserFavorites.Where(f => f.TourId == tourId).FirstOrDefault();
-
-            if (favorite != null && favorite.TourId == tourId)
+            var favorites = await UserService.GetUserFavorites();
+            foreach (var f in favorites)
             {
-                return true;
+                foreach (var r in TourService.SearchResults)
+                    if (f.TourId == r.Id) r.IsFavorite = true;   
             }
 
-            return false;
+            CategoryService.LoadCategories();
         }
-
-        return false;
     }
 
     private void HandleTourSelect(int id)
