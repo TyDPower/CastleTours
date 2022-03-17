@@ -2,6 +2,7 @@
 @inject ITourService TourService
 @inject IAuthService AuthService
 @inject IDialogServiceCustom DialogServiceCustom
+@implements IDisposable
 
 <MudToggleIconButton    @bind-Toggled="@IsFavorite"
                         @onclick="HandleClick"
@@ -22,6 +23,16 @@
     protected override async Task OnInitializedAsync()
     {
         IsAuthorized = await AuthService.GetUserAuthState();
+    }
+
+    protected override void OnInitialized()
+    {
+        TourService.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        TourService.OnChange -= StateHasChanged;
     }
 
     private async Task HandleClick()
