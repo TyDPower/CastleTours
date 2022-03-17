@@ -1,7 +1,9 @@
-﻿@page "/search/{searchText}"
+﻿@page "/search"
+@inject ITourService TourService
 
-<SearchToursExperiences SearchText="@searchText" />
+<HeaderImgFullWidth />
+<SearchToursExperiences SearchText="@TourService.LastSearchText" />
 
 @code {
-    [Parameter] public string searchText { get; set; }
+
 }
