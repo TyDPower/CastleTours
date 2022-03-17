@@ -15,6 +15,7 @@ namespace CastleTours.Shared.Models
         public string Location { get; set; }
         public string Category { get; set; }
         public string ImgUrl { get; set; }
+        public bool IsFavorite { get; set; } = false;
         public List<Facility> Facilities { get; set; } = new List<Facility>();
     }
 }
