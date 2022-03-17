@@ -1,8 +1,10 @@
 using CastleTours.Server.Data;
 using CastleTours.Server.Services.CastleService;
 using CastleTours.Server.Services.CategoryService;
-using CastleTours.Server.Services.StatsService;
+using CastleTours.Server.Services.FacilityService;
 using CastleTours.Server.Services.PaymentService;
+using CastleTours.Server.Services.SearchService;
+using CastleTours.Server.Services.StatsService;
 using CastleTours.Server.Services.TourService;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
@@ -21,10 +23,12 @@ builder.Services.AddDbContext<DataContext>(options =>
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
-builder.Services.AddScoped<ITourService, TourService>();
 builder.Services.AddScoped<ICastleService, CastleService>();
-builder.Services.AddScoped<IStatsService, StatsService>();
+builder.Services.AddScoped<IFacilityService, FacilityService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
+builder.Services.AddScoped<ISearchService, SearchService>();
+builder.Services.AddScoped<IStatsService, StatsService>();
+builder.Services.AddScoped<ITourService, TourService>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
