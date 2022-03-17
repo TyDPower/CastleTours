@@ -25,7 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\LocationService\" />
     <Folder Include="Services\AmentityService\" />
     <Folder Include="wwwroot\vendor\jquery.cookie\test\" />
   </ItemGroup>
